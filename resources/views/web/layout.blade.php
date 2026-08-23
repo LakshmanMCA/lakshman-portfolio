@@ -1,72 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@yield('title', 'Devfolio-Lakshman')</title>
+    <meta charset="UTF-8">
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <title>@yield('title', 'Devfolio-Lakshman')</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #07182e;
-      color: #fff;
-    }
+    {{-- Bootstrap --}}
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 50px;
-      background: #07182e;
-    }
+    {{-- Font Awesome --}}
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
-    header h1 {
-      color: #4aa9ff;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    .btn {
-      background: #ff2e97;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      color: #fff;
-    }
-  </style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #07182e;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
 
-  @stack('styles')
+        /*
+        |--------------------------------------------------------------------------
+        | Content starts below fixed navbar
+        |--------------------------------------------------------------------------
+        */
+
+        .page-content {
+            padding-top: 70px;
+            min-height: 100vh;
+        }
+    </style>
+
+    @stack('styles')
 </head>
 
 <body>
 
-  {{-- Navbar --}}
-  @include('web.navbar')
+    {{-- Navbar --}}
+    @include('web.navbar')
 
-  {{-- Page Content --}}
-  @yield('content')
+    {{-- Main Content --}}
+    <main class="page-content">
+        @yield('content')
+    </main>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- Footer --}}
+    @include('web.footer')
 
-  @stack('scripts')
-  @include('web.footer')
+    {{-- Bootstrap JS --}}
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    @stack('scripts')
+
 </body>
+
 </html>

@@ -7,7 +7,9 @@
     
     <!-- Logo/Brand -->
     <div class="nav-brand">
-      <span class="logo-text">Lakshman Pal</span>
+      <a href="{{ route('home') }}" class="nav-link">
+        <span class="logo-text">Lakshman Pal</span>
+      </a>
       {{-- <span class="logo-name">Pal</span> --}}
     </div>
 
@@ -22,27 +24,27 @@
           <div class="nav-highlight"></div>
         </li>
         <li class="nav-item">
-          <a href="{{ url('/about') }}" class="nav-link">
+          <a href="{{ route('about') }}" class="nav-link">
             <i class="fas fa-user nav-icon"></i>
             <span class="nav-text">About</span>
           </a>
           <div class="nav-highlight"></div>
         </li>
         <li class="nav-item">
-          <a href="{{ url('/skills') }}" class="nav-link">
+          <a href="{{ url('/#skills') }}" class="nav-link">
             <i class="fas fa-cogs nav-icon"></i>
             <span class="nav-text">Skills</span>
           </a>
           <div class="nav-highlight"></div>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a href="{{ url('/services') }}" class="nav-link">
             <i class="fas fa-concierge-bell nav-icon"></i>
             <span class="nav-text">Services</span>
           </a>
           <div class="nav-highlight"></div>
-        </li>
-        <li class="nav-item">
+        </li> --}}
+        {{-- <li class="nav-item">
           <a href="{{ url('/portfolio') }}" class="nav-link">
             <i class="fas fa-briefcase nav-icon"></i>
             <span class="nav-text">Portfolio</span>
@@ -55,7 +57,7 @@
             <span class="nav-text">Career</span>
           </a>
           <div class="nav-highlight"></div>
-        </li>
+        </li> --}}
       </ul>
     </nav>
 
@@ -90,15 +92,15 @@
   <!-- Mobile Navigation Overlay -->
   <div class="mobile-overlay">
     <div class="mobile-nav">
-      <div class="mobile-header">
-        <div class="mobile-brand">
+      {{-- <div class="mobile-header"> --}}
+        {{-- <div class="mobile-brand">
           <span class="logo-text">Lakshman</span>
           <span class="logo-name">Pal</span>
-        </div>
-        <button class="close-menu-btn" aria-label="Close menu">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
+        </div> --}}
+        {{-- <button class="close-menu-btn" aria-label="Close menu"> --}}
+          {{-- <i class="fas fa-times"></i> --}}
+        {{-- </button> --}}
+      {{-- </div> --}}
       <ul class="mobile-list">
         <li class="mobile-item">
           <a href="{{ url('/') }}" class="mobile-link">
@@ -107,18 +109,18 @@
           </a>
         </li>
         <li class="mobile-item">
-          <a href="{{ url('/about') }}" class="mobile-link">
+          <a href="{{ route('about') }}" class="mobile-link">
             <i class="fas fa-user mobile-icon"></i>
             <span class="mobile-text">About</span>
           </a>
         </li>
         <li class="mobile-item">
-          <a href="{{ url('/skills') }}" class="mobile-link">
+          <a href="{{ url('/#skills') }}" class="mobile-link">
             <i class="fas fa-cogs mobile-icon"></i>
             <span class="mobile-text">Skills</span>
           </a>
         </li>
-        <li class="mobile-item">
+        {{-- <li class="mobile-item">
           <a href="{{ url('/services') }}" class="mobile-link">
             <i class="fas fa-concierge-bell mobile-icon"></i>
             <span class="mobile-text">Services</span>
@@ -129,13 +131,13 @@
             <i class="fas fa-briefcase mobile-icon"></i>
             <span class="mobile-text">Portfolio</span>
           </a>
-        </li>
-        <li class="mobile-item">
+        </li> --}}
+        {{-- <li class="mobile-item">
           <a href="{{ url('/career') }}" class="mobile-link">
             <i class="fas fa-chart-line mobile-icon"></i>
             <span class="mobile-text">Career</span>
           </a>
-        </li>
+        </li> --}}
       </ul>
       <div class="mobile-actions">
         <a href="mailto:hire@lakshman.dev" class="mobile-hire-btn">
@@ -152,657 +154,614 @@
 </header>
 
 <style>
-/* ===== Navbar CSS Variables ===== */
+/* =========================================================
+   NAVBAR VARIABLES
+========================================================= */
+
 :root {
-  --primary: #00b8ff;
-  --primary-dark: #0086c3;
-  --secondary: #115fa2;
-  --dark: #0a192f;
-  --dark-light: #112240;
-  --light: #ccd6f6;
-  --gray: #8892b0;
-  --white: #e6f1ff;
-  --accent: #ff2e97;
+    --primary: #00b8ff;
+    --primary-dark: #0086c3;
+    --secondary: #115fa2;
+
+    --dark: #07182e;
+    --dark-light: #112240;
+
+    --light: #ccd6f6;
+    --gray: #8892b0;
+    --white: #e6f1ff;
+
+    --accent: #ff2e97;
 }
 
-/* ===== Header Base Styles ===== */
+
+/* =========================================================
+   HEADER
+========================================================= */
+
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: rgba(10, 25, 47, 0.92);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 70px;
+
+    z-index: 1000;
+
+    background: rgba(7, 24, 46, 0.95);
+
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+
+    transition: 0.3s ease;
 }
+
+
+/* =========================================================
+   NAV CONTAINER
+========================================================= */
 
 .nav-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* This ensures left and right spacing */
-  height: 70px;
+    position: relative;
+
+    width: 100%;
+    max-width: 1400px;
+
+    height: 70px;
+
+    margin: auto;
+
+    padding: 0 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* ===== Brand Logo - LEFT SIDE ===== */
+
+/* =========================================================
+   LOGO
+========================================================= */
+
 .nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  z-index: 1002;
-  /* Ensure it stays on left */
-  margin-right: auto;
+    display: flex;
+    align-items: center;
+
+    z-index: 1002;
+}
+
+.nav-brand a {
+    text-decoration: none;
 }
 
 .logo-text {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--primary);
-  letter-spacing: 0.5px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+
+    font-size: 1.3rem;
+
+    font-weight: 700;
+
+    color: #52f5d4;
+
+    letter-spacing: 0.5px;
+    
 }
 
-.logo-name {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--white);
-}
 
-/* ===== Desktop Navigation ===== */
+/* =========================================================
+   DESKTOP NAVIGATION
+========================================================= */
+
 .desktop-nav {
-  display: flex;
-  align-items: center;
-  /* Center the navigation */
-  margin: 0 auto;
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
 }
 
 .nav-list {
-  display: flex;
-  gap: 0;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
 }
 
 .nav-item {
-  position: relative;
+    position: relative;
 }
 
 .nav-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  color: var(--gray);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.9rem;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
+    position: relative;
 
-.nav-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 184, 255, 0.1);
-  border-radius: 6px;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s ease;
-  z-index: -1;
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    color: var(--gray);
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+
+    font-weight: 500;
+
+    border-radius: 6px;
+
+    transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-  color: var(--primary);
-  transform: translateY(-2px);
-}
+    color: #52f5d4;
 
-.nav-link:hover::before {
-  transform: scaleX(1);
-  transform-origin: left;
+    transform: translateY(-2px);
 }
 
 .nav-icon {
-  font-size: 0.95rem;
-  color: var(--gray);
-  width: 20px;
-  text-align: center;
-  transition: all 0.3s ease;
+    width: 20px;
+
+    text-align: center;
+
+    font-size: 0.9rem;
+
+    color: var(--gray);
+
+    transition: 0.3s ease;
 }
 
 .nav-link:hover .nav-icon {
-  color: var(--primary);
-  transform: scale(1.1) rotate(5deg);
+    color: #52f5d4;
+
+    transform: scale(1.1);
 }
+
+
+/* Bottom active/hover line */
 
 .nav-highlight {
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 60%;
-  height: 2px;
-  background: var(--primary);
-  border-radius: 2px;
-  transition: transform 0.3s ease;
+    position: absolute;
+
+    bottom: 0;
+
+    left: 50%;
+
+    width: 60%;
+
+    height: 2px;
+
+    background: #52f5d4;
+
+    border-radius: 2px;
+
+    transform: translateX(-50%) scaleX(0);
+
+    transition: 0.3s ease;
 }
 
-.nav-item:hover .nav-highlight {
-  transform: translateX(-50%) scaleX(1);
+.nav-item:hover .nav-highlight,
+.nav-item.active .nav-highlight {
+    transform: translateX(-50%) scaleX(1);
 }
 
-/* ===== Action Buttons ===== */
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
 .nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  /* Ensure it stays on right in desktop */
-  margin-left: auto;
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-left: auto;
 }
 
 .hire-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, var(--accent) 0%, #ff2e63 100%);
-  color: var(--white);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  border: none;
-  cursor: pointer;
-}
+    position: relative;
 
-.hire-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.6s ease;
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 11px 20px;
+
+    background: linear-gradient(
+        135deg,
+        #ff2e97,
+        #ff2e63
+    );
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+
+    font-weight: 600;
+
+    border-radius: 6px;
+
+    border: none;
+
+    overflow: hidden;
+
+    transition: all 0.3s ease;
 }
 
 .hire-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(255, 46, 151, 0.3);
-}
+    color: white;
 
-.hire-btn:hover::before {
-  left: 100%;
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(255, 46, 151, 0.3);
 }
 
 .hire-icon {
-  font-size: 0.95rem;
-  transition: transform 0.3s ease;
+    font-size: 0.9rem;
 }
 
-.hire-btn:hover .hire-icon {
-  transform: translateY(-2px) rotate(-10deg);
-}
 
-.cv-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: var(--dark);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  border: none;
-  cursor: pointer;
-}
+/* =========================================================
+   MOBILE TOGGLE
+========================================================= */
 
-.cv-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.6s ease;
-}
-
-.cv-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 184, 255, 0.3);
-}
-
-.cv-btn:hover::before {
-  left: 100%;
-}
-
-.cv-icon {
-  font-size: 0.95rem;
-  transition: transform 0.3s ease;
-}
-
-.cv-btn:hover .cv-icon {
-  transform: translateY(-2px) rotate(10deg);
-}
-
-/* ===== Mobile Toggle Button - RIGHT SIDE ===== */
 .mobile-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 44px;
-  height: 44px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  position: relative;
-  z-index: 1002;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  /* Ensure it stays on right in mobile */
-  margin-left: auto;
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 10px;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+
+    color: white;
+
+    cursor: pointer;
+
+    z-index: 1003;
+    
 }
 
-.mobile-toggle:hover {
-  background: rgba(0, 184, 255, 0.1);
-}
+
+/* Hamburger */
 
 .hamburger-icon {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 22px;
-  height: 16px;
-  position: absolute;
-  transition: all 0.3s ease;
-  opacity: 1;
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
 }
 
-.bar {
-  width: 100%;
-  height: 2px;
-  background: var(--white);
-  border-radius: 1px;
-  transition: all 0.3s ease;
+.hamburger-icon .bar {
+    display: block;
+
+    width: 24px;
+    height: 2px;
+
+    background: white;
+
+    border-radius: 2px;
+
+    transition: 0.3s ease;
 }
 
-.mobile-toggle.active .bar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
 
-.mobile-toggle.active .bar:nth-child(2) {
-  opacity: 0;
-}
-
-.mobile-toggle.active .bar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
+/* Close icon hidden initially */
 
 .close-icon {
-  position: absolute;
-  font-size: 1.4rem;
-  color: var(--white);
-  transition: all 0.3s ease;
-  opacity: 0;
-  transform: scale(0.8);
+    display: none;
+
+    font-size: 25px;
+}
+
+
+/* When menu is active */
+
+.mobile-toggle.active .hamburger-icon {
+    display: none;
 }
 
 .mobile-toggle.active .close-icon {
-  opacity: 1;
-  transform: scale(1);
+    display: block;
 }
 
-.mobile-toggle.active .hamburger-icon {
-  opacity: 0;
-  transform: scale(0.8);
-}
 
-/* ===== Mobile Navigation Overlay ===== */
+/* =========================================================
+   MOBILE OVERLAY
+========================================================= */
+
 .mobile-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(10, 25, 47, 0.98);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  display: none;
-  z-index: 1001;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 100dvh;
+
+    max-height: 100dvh;
+
+    background: rgba(7, 24, 46, 0.98);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    display: none;
+
+    z-index: 1001;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    -webkit-overflow-scrolling: touch;
 }
 
 .mobile-overlay.active {
-  display: block;
-  opacity: 1;
+    display: block;
 }
+
+
+/* =========================================================
+   MOBILE NAV
+========================================================= */
 
 .mobile-nav {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 80px 20px 30px;
-  animation: slideIn 0.4s ease;
+    min-height: 100%;
+
+    height: auto;
+
+    padding: 80px 25px 40px;
+
+    display: flex;
+
+    flex-direction: column;
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
+
+/* =========================================================
+   MOBILE HEADER
+========================================================= */
 
 .mobile-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 30px;
 }
 
 .mobile-brand {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-family: 'SF Mono', 'Fira Code', monospace;
+    font-family: 'SF Mono', 'Fira Code', monospace;
 }
+
+.mobile-brand .logo-text {
+    color: #52f5d4;
+}
+
+
+/* Close button */
 
 .close-menu-btn {
-  background: transparent;
-  border: none;
-  color: var(--white);
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
 }
 
-.close-menu-btn:hover {
-  color: var(--primary);
-  background: rgba(0, 184, 255, 0.1);
-}
+
+/* =========================================================
+   MOBILE LIST
+========================================================= */
 
 .mobile-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex: 1;
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
 }
 
 .mobile-item {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .mobile-link {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 15px 20px;
-  color: var(--gray);
-  text-decoration: none;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    width: 100%;
+
+    padding: 16px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    border-radius: 8px;
+
+    transition: 0.3s ease;
 }
 
-.mobile-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 184, 255, 0.1);
-  transition: left 0.4s ease;
-  z-index: -1;
-}
+.mobile-link:hover,
+.mobile-item.active .mobile-link {
+    background: rgba(82, 245, 212, 0.08);
 
-.mobile-link:hover {
-  color: var(--primary);
-  transform: translateX(8px);
-}
-
-.mobile-link:hover::before {
-  left: 0;
+    color: #52f5d4;
 }
 
 .mobile-icon {
-  font-size: 1.1rem;
-  color: var(--gray);
-  width: 24px;
-  text-align: center;
-  transition: all 0.3s ease;
+    width: 25px;
+
+    text-align: center;
 }
 
-.mobile-link:hover .mobile-icon {
-  color: var(--primary);
-  transform: scale(1.1);
-}
+
+/* =========================================================
+   MOBILE ACTIONS
+========================================================= */
 
 .mobile-actions {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+    padding-bottom: 30px;
 }
 
 .mobile-hire-btn,
 .mobile-cv-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  padding: 15px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    padding: 14px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.3s ease;
 }
 
 .mobile-hire-btn {
-  background: linear-gradient(135deg, var(--accent) 0%, #ff2e63 100%);
-  color: var(--white);
+    background: #ff2e97;
+
+    color: white;
 }
 
 .mobile-cv-btn {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: var(--dark);
+    background: #00b8ff;
+
+    color: #07182e;
 }
 
-.mobile-hire-btn:hover,
-.mobile-cv-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 901px) {
+
+    .mobile-toggle,
+    .mobile-overlay {
+        display: none !important;
+    }
+
 }
 
-/* ===== Scroll Effect ===== */
-header.scrolled {
-  background: rgba(10, 25, 47, 0.97);
-  backdrop-filter: blur(15px) saturate(200%);
-  -webkit-backdrop-filter: blur(15px) saturate(200%);
-  height: 65px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-}
 
-header.scrolled .nav-container {
-  height: 65px;
-}
+/* =========================================================
+   TABLET / MOBILE
+========================================================= */
 
-/* ===== RESPONSIVE BREAKPOINTS ===== */
-
-/* Large Tablets and Small Laptops */
-@media (max-width: 1100px) {
-  .nav-link {
-    padding: 10px 14px;
-    font-size: 0.85rem;
-  }
-  
-  .hire-btn,
-  .cv-btn {
-    padding: 10px 16px;
-    font-size: 0.85rem;
-  }
-  
-  .logo-text,
-  .logo-name {
-    font-size: 1.2rem;
-  }
-}
-
-/* Tablets - Hide desktop nav, show mobile toggle */
 @media (max-width: 900px) {
-  .desktop-nav {
-    display: none;
-  }
-  
-  .nav-actions {
-    display: none;
-  }
-  
-  .mobile-toggle {
-    display: flex;
-  }
-  
-  .nav-container {
-    padding: 0 15px;
-    height: 65px;
-    /* Ensure proper spacing between left and right items */
-    justify-content: space-between;
-  }
-  
-  .nav-brand {
-    /* Keep on left */
-    margin-right: 0;
-  }
-  
-  .mobile-toggle {
-    /* Keep on right */
-    margin-left: 0;
-  }
-  
-  header.scrolled .nav-container {
-    height: 60px;
-  }
+
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .nav-actions {
+        margin-left: auto;
+    }
+
+    .nav-actions .hire-btn {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: flex;
+    }
+
 }
 
-/* Mobile Phones */
-@media (max-width: 480px) {
-  .nav-brand {
-    gap: 3px;
-  }
-  
-  .logo-text,
-  .logo-name {
-    font-size: 1.1rem;
-  }
-  
-  .mobile-nav {
-    padding: 70px 15px 25px;
-  }
-  
-  .mobile-link {
-    padding: 14px 18px;
-    font-size: 1rem;
-    gap: 12px;
-  }
-  
-  .mobile-header {
-    margin-bottom: 30px;
-  }
-  
-  .mobile-hire-btn,
-  .mobile-cv-btn {
-    padding: 14px;
-    font-size: 0.95rem;
-  }
-  
-  /* Ensure proper spacing on small screens */
-  .nav-container {
-    padding: 0 10px;
-  }
-}
 
-/* Small Mobile Phones */
-@media (max-width: 360px) {
-  .logo-text,
-  .logo-name {
-    font-size: 1rem;
-  }
-  
-  .nav-container {
-    padding: 0 10px;
-  }
-  
-  .mobile-nav {
-    padding: 60px 10px 20px;
-  }
-  
-  .mobile-link {
-    padding: 12px 15px;
-    font-size: 0.95rem;
-  }
-}
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
 
-/* ===== Active Page Glow Effect ===== */
-.nav-item.active .nav-link::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(circle, rgba(0, 184, 255, 0.1) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  opacity: 0.2;
-}
+@media (max-width: 576px) {
 
-/* ===== Subtle Pulse Animation for Hire Button ===== */
-@keyframes subtlePulse {
-  0%, 100% {
-    box-shadow: 0 5px 15px rgba(255, 46, 151, 0.3);
-  }
-  50% {
-    box-shadow: 0 5px 20px rgba(255, 46, 151, 0.5);
-  }
-}
+    .nav-container {
+        padding: 0 15px;
+    }
 
-.hire-btn {
-  animation: subtlePulse 3s infinite;
+    .logo-text {
+        font-size: 1.1rem;
+    }
+
+    .mobile-nav {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
 }
 
 </style>
@@ -817,18 +776,24 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Toggle mobile menu
   function toggleMobileMenu() {
+
     mobileToggle.classList.toggle('active');
     mobileOverlay.classList.toggle('active');
-    document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
-  }
-  
+
+    if (mobileOverlay.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+}
   // Close mobile menu
-  function closeMobileMenu() {
+ function closeMobileMenu() {
+
     mobileToggle.classList.remove('active');
     mobileOverlay.classList.remove('active');
+
     document.body.style.overflow = '';
-  }
-  
+}
   // Event listeners
   mobileToggle.addEventListener('click', toggleMobileMenu);
   

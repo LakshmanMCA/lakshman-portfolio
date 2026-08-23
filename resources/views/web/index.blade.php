@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 120px 20px 80px;
+    padding: 1px 20px 80px;
     background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
     position: relative;
     overflow: hidden;
@@ -417,7 +417,7 @@
     .hero-content {
       grid-template-columns: 1fr;
       text-align: center;
-      gap: 60px;
+      
     }
     
     .hero-text h1 {
