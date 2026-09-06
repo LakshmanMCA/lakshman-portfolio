@@ -525,7 +525,7 @@
                 </div>
             @endif
 
-            <form id="contactForm" action="" method="POST">
+            <form id="contactForm" action="{{ route('contact.store')}}" method="POST" novalidate>
                 @csrf
                 
                 <div class="form-group">

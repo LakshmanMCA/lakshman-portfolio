@@ -150,10 +150,10 @@
     {{-- ================= EXPERIENCE ================= --}}
     <section class="experience-section">
 
-        <div class="section-title">
+        {{-- <div class="section-title">
             <h2>My Experience</h2>
             <p>My professional journey and current work experience</p>
-        </div>
+        </div> --}}
 
         <div class="experience-card">
 
@@ -212,97 +212,40 @@
     <section class="certificate-section">
 
         <div class="section-title">
-            <h2>My Certifications</h2>
+            <h2>Certifications</h2>
             <p>Professional certifications and achievements</p>
         </div>
 
         <div class="row g-4">
+            @foreach($certifications as $certification)
+                <div class="col-md-6 col-lg-4">
 
-            {{-- Certificate 1 --}}
-            <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-card">
 
-                <div class="portfolio-card">
+                        <img
+                            src="{{ asset($certification->image) }}"
+                            alt="{{ $certification->name }}">
 
-                    <img
-                        src="{{ asset('images/certificates/certificate-1.jpg') }}"
-                        alt="Certificate">
+                        <div class="portfolio-card-body">
 
-                    <div class="portfolio-card-body">
+                            <h4>{{ $certification->name }}</h4>
 
-                        <h4>Certificate Name</h4>
+                            <p>
+                                {{ $certification->description }}
+                            </p>
+                            @if($certification->issued_date)
+                            <small class="text-secondary">
+                                Issued: {{ $certification->issued_date }}
+                            </small>
+                            @endif
 
-                        <p>
-                            Add a short description about this
-                            certification and the skills you learned.
-                        </p>
-
-                        <small class="text-secondary">
-                            Issued: 2025
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            {{-- Certificate 2 --}}
-            <div class="col-md-6 col-lg-4">
-
-                <div class="portfolio-card">
-
-                    <img
-                        src="{{ asset('images/certificates/certificate-2.jpg') }}"
-                        alt="Certificate">
-
-                    <div class="portfolio-card-body">
-
-                        <h4>Certificate Name</h4>
-
-                        <p>
-                            Add certification details here.
-                        </p>
-
-                        <small class="text-secondary">
-                            Issued: 2025
-                        </small>
+                        </div>
 
                     </div>
 
                 </div>
-
-            </div>
-
-
-            {{-- Certificate 3 --}}
-            <div class="col-md-6 col-lg-4">
-
-                <div class="portfolio-card">
-
-                    <img
-                        src="{{ asset('images/certificates/certificate-3.jpg') }}"
-                        alt="Certificate">
-
-                    <div class="portfolio-card-body">
-
-                        <h4>Certificate Name</h4>
-
-                        <p>
-                            Add certification details here.
-                        </p>
-
-                        <small class="text-secondary">
-                            Issued: 2025
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+            @endforeach
+           
 
     </section>
 
@@ -312,7 +255,7 @@
 
         <div class="section-title">
 
-            <h2>My Education</h2>
+            <h2>Academic Journey</h2>
 
             <p>
                 My academic background and educational journey
@@ -322,28 +265,32 @@
 
 
         <div class="row g-4">
-
+        @foreach($educations as $education)
             {{-- College --}}
             <div class="col-md-6">
 
                 <div class="portfolio-card">
 
                     <img
-                        src="{{ asset('images/college/fiem.jpg') }}"
-                        alt="Future Institute of Engineering and Management">
+                        src="{{ asset($education->institution_image) }}"
+                        alt="{{ $education->institution }}">
 
                     <div class="portfolio-card-body">
 
                         <h4>
-                            Future Institute of Engineering and Management
+                            {{ $education->institution_name }}
                         </h4>
 
                         <p>
-                            Master of Computer Applications (MCA)
+                            {{ $education->degree }}
                         </p>
-
+                         <p>
                         <small class="text-secondary">
-                            Higher Education
+                            {{ $education->description }} 
+                        </small>
+                        </p>
+                        <small class="text-secondary">
+                            {{ $education->start_date->format('Y') }} - {{ $education->completion_date->format('Y') }}
                         </small>
 
                     </div>
@@ -352,37 +299,8 @@
 
             </div>
 
-
-            {{-- Add another college --}}
-            <div class="col-md-6">
-
-                <div class="portfolio-card">
-
-                    <img
-                        src="{{ asset('images/college/college-2.jpg') }}"
-                        alt="College">
-
-                    <div class="portfolio-card-body">
-
-                        <h4>
-                            Your College Name
-                        </h4>
-
-                        <p>
-                            Add your degree/course details here.
-                        </p>
-
-                        <small class="text-secondary">
-                            Education
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+        @endforeach
+            
 
     </section>
 

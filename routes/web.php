@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\ContactController;
+use App\Http\Controllers\web\ContactController;
 use App\Http\Controllers\web\HomeController;
 use App\Http\Controllers\Web\AboutController;
 /*
