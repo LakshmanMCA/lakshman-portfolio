@@ -1,926 +1,1002 @@
-<!-- Add this in your layout file or before the closing </head> tag -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<header class="lp-navbar" id="lpNavbar">
 
-<header>
-  <!-- Main Navigation Container -->
-  <div class="nav-container">
-    
-    <!-- Logo/Brand -->
-    <div class="nav-brand">
-      <a href="{{ route('home') }}" class="nav-link">
-        <span class="logo-text">Lakshman Pal</span>
-      </a>
-      {{-- <span class="logo-name">Pal</span> --}}
-    </div>
+    <div class="lp-nav-container">
 
-    <!-- Desktop Navigation -->
-    <nav class="desktop-nav">
-      <ul class="nav-list">
-        <li class="nav-item">
-          <a href="{{ url('/') }}" class="nav-link">
-            <i class="fas fa-home nav-icon"></i>
-            <span class="nav-text">Home</span>
-          </a>
-          <div class="nav-highlight"></div>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('about') }}" class="nav-link">
-            <i class="fas fa-user nav-icon"></i>
-            <span class="nav-text">About</span>
-          </a>
-          <div class="nav-highlight"></div>
-        </li>
-        <li class="nav-item">
-          <a href="{{ url('/#skills') }}" class="nav-link">
-            <i class="fas fa-cogs nav-icon"></i>
-            <span class="nav-text">Skills</span>
-          </a>
-          <div class="nav-highlight"></div>
-        </li>
-        {{-- <li class="nav-item">
-          <a href="{{ url('/services') }}" class="nav-link">
-            <i class="fas fa-concierge-bell nav-icon"></i>
-            <span class="nav-text">Services</span>
-          </a>
-          <div class="nav-highlight"></div>
-        </li> --}}
-        {{-- <li class="nav-item">
-          <a href="{{ url('/portfolio') }}" class="nav-link">
-            <i class="fas fa-briefcase nav-icon"></i>
-            <span class="nav-text">Portfolio</span>
-          </a>
-          <div class="nav-highlight"></div>
-        </li>
-        <li class="nav-item">
-          <a href="{{ url('/career') }}" class="nav-link">
-            <i class="fas fa-chart-line nav-icon"></i>
-            <span class="nav-text">Career</span>
-          </a>
-          <div class="nav-highlight"></div>
-        </li> --}}
-      </ul>
-    </nav>
+        {{-- BRAND --}}
+        <a href="{{ route('home') }}" class="lp-brand">
+            <span class="lp-brand-mark">LP</span>
 
-    <!-- Action Buttons -->
-    <div class="nav-actions">
-      <!-- Hire Me Button -->
-      <a href="{{ route('hire-me') }}" class="hire-btn">
-        <i class="fas fa-paper-plane hire-icon"></i>
-        <span class="hire-text">Hire Me</span>
-      </a>
-      
-      <!-- Download CV Button -->
-      {{-- <a href="#" class="cv-btn">
-        <i class="fas fa-download cv-icon"></i>
-        <span class="cv-text">Download CV</span>
-      </a> --}}
-    </div>
-
-    <!-- Mobile Menu Toggle - NOW ON RIGHT SIDE -->
-    <button class="mobile-toggle" aria-label="Toggle navigation">
-      <span class="hamburger-icon">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </span>
-      <span class="close-icon">
-        <i class="fas fa-times"></i>
-      </span>
-    </button>
-  </div>
-
-  <!-- Mobile Navigation Overlay -->
-  <div class="mobile-overlay">
-    <div class="mobile-nav">
-      {{-- <div class="mobile-header"> --}}
-        {{-- <div class="mobile-brand">
-          <span class="logo-text">Lakshman</span>
-          <span class="logo-name">Pal</span>
-        </div> --}}
-        {{-- <button class="close-menu-btn" aria-label="Close menu"> --}}
-          {{-- <i class="fas fa-times"></i> --}}
-        {{-- </button> --}}
-      {{-- </div> --}}
-      <ul class="mobile-list">
-        <li class="mobile-item">
-          <a href="{{ url('/') }}" class="mobile-link">
-            <i class="fas fa-home mobile-icon"></i>
-            <span class="mobile-text">Home</span>
-          </a>
-        </li>
-        <li class="mobile-item">
-          <a href="{{ route('about') }}" class="mobile-link">
-            <i class="fas fa-user mobile-icon"></i>
-            <span class="mobile-text">About</span>
-          </a>
-        </li>
-        <li class="mobile-item">
-          <a href="{{ url('/#skills') }}" class="mobile-link">
-            <i class="fas fa-cogs mobile-icon"></i>
-            <span class="mobile-text">Skills</span>
-          </a>
-        </li>
-        {{-- <li class="mobile-item">
-          <a href="{{ url('/services') }}" class="mobile-link">
-            <i class="fas fa-concierge-bell mobile-icon"></i>
-            <span class="mobile-text">Services</span>
-          </a>
-        </li>
-        <li class="mobile-item">
-          <a href="{{ url('/portfolio') }}" class="mobile-link">
-            <i class="fas fa-briefcase mobile-icon"></i>
-            <span class="mobile-text">Portfolio</span>
-          </a>
-        </li> --}}
-        {{-- <li class="mobile-item">
-          <a href="{{ url('/career') }}" class="mobile-link">
-            <i class="fas fa-chart-line mobile-icon"></i>
-            <span class="mobile-text">Career</span>
-          </a>
-        </li> --}}
-      </ul>
-      <div class="mobile-actions">
-        <a href="mailto:hire@lakshman.dev" class="mobile-hire-btn">
-          <i class="fas fa-paper-plane"></i>
-          <span>Hire Me</span>
+            <span class="lp-brand-text">
+                <strong>Lakshman Pal</strong>
+                <small>Software Developer</small>
+            </span>
         </a>
-        <a href="#" class="mobile-cv-btn">
-          <i class="fas fa-download"></i>
-          <span>Download CV</span>
-        </a>
-      </div>
+
+
+        {{-- DESKTOP NAVIGATION --}}
+        <nav class="lp-desktop-nav">
+
+            <a href="{{ route('home') }}" class="lp-nav-link active">
+                Home
+            </a>
+
+            <a href="{{ url('/#about') }}" class="lp-nav-link">
+                About
+            </a>
+
+            <a href="{{ url('/#skills') }}" class="lp-nav-link">
+                Skills
+            </a>
+
+            <a href="{{ url('/#experience') }}" class="lp-nav-link">
+                Experience
+            </a>
+
+            <a href="{{ url('/#projects') }}" class="lp-nav-link">
+                Projects
+            </a>
+
+            {{-- <a href="{{ url('/#contact') }}" class="lp-nav-link">
+                Contact
+            </a> --}}
+
+        </nav>
+
+
+        {{-- DESKTOP ACTIONS --}}
+        <div class="lp-nav-actions">
+
+            <a href="{{ asset('resume/Lakshman_Pal_CV.pdf') }}"
+               class="lp-cv-button"
+               download>
+
+                <i class="fas fa-download"></i>
+
+                <span>CV</span>
+
+            </a>
+
+            <a href="{{ route('hire-me') }}"
+               class="lp-hire-button">
+
+                <i class="fas fa-paper-plane"></i>
+
+                <span>Hire Me</span>
+
+            </a>
+
+        </div>
+
+
+        {{-- MOBILE BUTTON --}}
+        <button type="button"
+                class="lp-mobile-toggle"
+                id="lpMobileToggle"
+                aria-label="Open navigation">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
     </div>
-  </div>
+
 </header>
 
+{{-- MOBILE MENU (kept outside <header> on purpose: the header uses
+     backdrop-filter, which creates a containing block for
+     position:fixed children and breaks their positioning) --}}
+<div class="lp-mobile-menu" id="lpMobileMenu">
+
+        <div class="lp-mobile-inner">
+
+            <div class="lp-mobile-top">
+
+                <div>
+                    <span class="lp-mobile-title">Lakshman Pal</span>
+                    <small>Software Developer</small>
+                </div>
+
+                <button type="button"
+                        class="lp-mobile-close"
+                        id="lpMobileClose">
+
+                    <i class="fas fa-times"></i>
+
+                </button>
+
+            </div>
+
+
+            <nav class="lp-mobile-nav">
+
+                <a href="{{ route('home') }}">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+
+                <a href="{{ url('/#about') }}">
+                    <i class="fas fa-user"></i>
+                    <span>About</span>
+                </a>
+
+                <a href="{{ url('/#skills') }}">
+                    <i class="fas fa-code"></i>
+                    <span>Skills</span>
+                </a>
+
+                <a href="{{ url('/#experience') }}">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Experience</span>
+                </a>
+
+                <a href="{{ url('/#projects') }}">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Projects</span>
+                </a>
+
+                <a href="{{ url('/#contact') }}">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+
+            </nav>
+
+
+            <div class="lp-mobile-actions">
+
+                <a href="{{ route('hire-me') }}"
+                   class="lp-mobile-hire">
+
+                    <i class="fas fa-paper-plane"></i>
+
+                    Hire Me
+
+                </a>
+
+                <a href="{{ asset('resume/Lakshman_Pal_CV.pdf') }}"
+                   class="lp-mobile-cv"
+                   download>
+
+                    <i class="fas fa-download"></i>
+
+                    Download CV
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
 <style>
-/* =========================================================
-   NAVBAR VARIABLES
-========================================================= */
 
 :root {
-    --primary: #00b8ff;
-    --primary-dark: #0086c3;
-    --secondary: #115fa2;
-
-    --dark: #07182e;
-    --dark-light: #112240;
-
-    --light: #ccd6f6;
-    --gray: #8892b0;
-    --white: #e6f1ff;
-
-    --accent: #ff2e97;
+    --lp-nav-bg: rgba(4, 18, 34, 0.90);
+    --lp-blue: #20b8ff;
+    --lp-blue-light: #62d4ff;
+    --lp-white: #f4f9ff;
+    --lp-muted: #91a8bc;
+    --lp-border: rgba(255,255,255,.09);
 }
 
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* =====================================================
+   NAVBAR
+===================================================== */
 
-header {
+.lp-navbar {
+
     position: fixed;
 
     top: 0;
     left: 0;
 
     width: 100%;
-    height: 70px;
 
-    z-index: 1000;
+    height: 76px;
 
-    background: rgba(7, 24, 46, 0.95);
+    z-index: 9999;
 
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background: var(--lp-nav-bg);
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--lp-border);
 
-    transition: 0.3s ease;
+    transition: .3s ease;
 }
 
 
-/* =========================================================
-   NAV CONTAINER
-========================================================= */
+.lp-navbar.scrolled {
 
-.nav-container {
-    position: relative;
+    background: rgba(3, 14, 27, .97);
 
-    width: 100%;
-    max-width: 1400px;
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.25);
 
-    height: 70px;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.lp-nav-container {
+
+    width: min(1280px, calc(100% - 40px));
+
+    height: 100%;
 
     margin: auto;
 
-    padding: 0 30px;
-
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
 }
 
 
-/* =========================================================
-   LOGO
-========================================================= */
+/* =====================================================
+   BRAND
+===================================================== */
 
-.nav-brand {
-    display: flex;
-    align-items: center;
-
-    z-index: 1002;
-}
-
-.nav-brand a {
-    text-decoration: none;
-}
-
-.logo-text {
-    font-family: 'SF Mono', 'Fira Code', monospace;
-
-    font-size: 1.3rem;
-
-    font-weight: 700;
-
-    color: #52f5d4;
-
-    letter-spacing: 0.5px;
-    
-}
-
-
-/* =========================================================
-   DESKTOP NAVIGATION
-========================================================= */
-
-.desktop-nav {
-    position: absolute;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    display: flex;
-    align-items: center;
-}
-
-.nav-list {
-    display: flex;
-
-    align-items: center;
-
-    gap: 4px;
-
-    list-style: none;
-
-    margin: 0;
-    padding: 0;
-}
-
-.nav-item {
-    position: relative;
-}
-
-.nav-link {
-    position: relative;
+.lp-brand {
 
     display: flex;
 
     align-items: center;
 
-    gap: 8px;
+    gap: 12px;
 
-    padding: 10px 16px;
+    text-decoration: none !important;
 
-    color: var(--gray);
-
-    text-decoration: none;
-
-    font-size: 0.9rem;
-
-    font-weight: 500;
-
-    border-radius: 6px;
-
-    transition: all 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #52f5d4;
-
-    transform: translateY(-2px);
-}
-
-.nav-icon {
-    width: 20px;
-
-    text-align: center;
-
-    font-size: 0.9rem;
-
-    color: var(--gray);
-
-    transition: 0.3s ease;
-}
-
-.nav-link:hover .nav-icon {
-    color: #52f5d4;
-
-    transform: scale(1.1);
 }
 
 
-/* Bottom active/hover line */
+.lp-brand-mark {
 
-.nav-highlight {
-    position: absolute;
-
-    bottom: 0;
-
-    left: 50%;
-
-    width: 60%;
-
-    height: 2px;
-
-    background: #52f5d4;
-
-    border-radius: 2px;
-
-    transform: translateX(-50%) scaleX(0);
-
-    transition: 0.3s ease;
-}
-
-.nav-item:hover .nav-highlight,
-.nav-item.active .nav-highlight {
-    transform: translateX(-50%) scaleX(1);
-}
-
-
-/* =========================================================
-   ACTION BUTTONS
-========================================================= */
-
-.nav-actions {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    margin-left: auto;
-}
-
-.hire-btn {
-    position: relative;
+    width: 43px;
+    height: 43px;
 
     display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    padding: 11px 20px;
-
-    background: linear-gradient(
-        135deg,
-        #ff2e97,
-        #ff2e63
-    );
-
-    color: white;
-
-    text-decoration: none;
-
-    font-size: 0.9rem;
-
-    font-weight: 600;
-
-    border-radius: 6px;
-
-    border: none;
-
-    overflow: hidden;
-
-    transition: all 0.3s ease;
-}
-
-.hire-btn:hover {
-    color: white;
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 10px 25px rgba(255, 46, 151, 0.3);
-}
-
-.hire-icon {
-    font-size: 0.9rem;
-}
-
-
-/* =========================================================
-   MOBILE TOGGLE
-========================================================= */
-
-.mobile-toggle {
-    display: none;
-
-    width: 42px;
-    height: 42px;
 
     align-items: center;
     justify-content: center;
 
-    margin-left: 10px;
+    border-radius: 11px;
 
-    padding: 0;
+    background:
+        linear-gradient(
+            135deg,
+            #20b8ff,
+            #0876c9
+        );
 
-    background: transparent;
+    color: #fff;
 
-    border: none;
+    font-size: 14px;
 
-    color: white;
+    font-weight: 900;
 
-    cursor: pointer;
+    box-shadow:
+        0 8px 25px rgba(32,184,255,.25);
 
-    z-index: 1003;
-    
 }
 
 
-/* Hamburger */
+.lp-brand-text {
 
-.hamburger-icon {
     display: flex;
+
+    flex-direction: column;
+
+    line-height: 1.1;
+
+}
+
+
+.lp-brand-text strong {
+
+    color: var(--lp-white);
+
+    font-size: 16px;
+
+    font-weight: 750;
+
+}
+
+
+.lp-brand-text small {
+
+    color: var(--lp-muted);
+
+    font-size: 10px;
+
+    margin-top: 4px;
+
+}
+
+
+/* =====================================================
+   DESKTOP NAV
+===================================================== */
+
+.lp-desktop-nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+
+.lp-nav-link {
+
+    position: relative;
+
+    padding: 10px 14px;
+
+    color: #aebfd0;
+
+    text-decoration: none !important;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: .25s ease;
+
+}
+
+
+.lp-nav-link::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 1px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--lp-blue);
+
+    transform: translateX(-50%);
+
+    transition: .25s ease;
+
+    border-radius: 10px;
+
+}
+
+
+.lp-nav-link:hover,
+.lp-nav-link.active {
+
+    color: #fff;
+
+}
+
+
+.lp-nav-link:hover::after,
+.lp-nav-link.active::after {
+
+    width: 25px;
+
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.lp-nav-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+
+.lp-cv-button,
+.lp-hire-button {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 40px;
+
+    padding: 0 15px;
+
+    border-radius: 8px;
+
+    text-decoration: none !important;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: .25s ease;
+
+}
+
+
+.lp-cv-button {
+
+    color: var(--lp-blue-light);
+
+    border: 1px solid rgba(32,184,255,.35);
+
+    background: rgba(32,184,255,.06);
+
+}
+
+
+.lp-cv-button:hover {
+
+    color: #fff;
+
+    background: rgba(32,184,255,.13);
+
+    border-color: var(--lp-blue);
+
+    transform: translateY(-2px);
+
+}
+
+
+.lp-hire-button {
+
+    color: #031522;
+
+    background: var(--lp-blue);
+
+    border: 1px solid var(--lp-blue);
+
+}
+
+
+.lp-hire-button:hover {
+
+    color: #031522;
+
+    background: var(--lp-blue-light);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(32,184,255,.25);
+
+}
+
+
+/* =====================================================
+   MOBILE TOGGLE
+===================================================== */
+
+.lp-mobile-toggle {
+
+    display: none;
+
+    width: 43px;
+    height: 43px;
+
+    padding: 0;
+
+    border: 1px solid rgba(32,184,255,.25);
+
+    border-radius: 9px;
+
+    background: rgba(32,184,255,.06);
+
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
 
     flex-direction: column;
 
     gap: 5px;
+
 }
 
-.hamburger-icon .bar {
-    display: block;
 
-    width: 24px;
+.lp-mobile-toggle span {
+
+    width: 22px;
     height: 2px;
 
-    background: white;
+    background: var(--lp-blue-light);
 
-    border-radius: 2px;
+    border-radius: 5px;
 
-    transition: 0.3s ease;
+    transition: .25s ease;
+
 }
 
 
-/* Close icon hidden initially */
+/* =====================================================
+   MOBILE MENU
+===================================================== */
 
-.close-icon {
+.lp-mobile-menu {
+
     display: none;
 
-    font-size: 25px;
-}
-
-
-/* When menu is active */
-
-.mobile-toggle.active .hamburger-icon {
-    display: none;
-}
-
-.mobile-toggle.active .close-icon {
-    display: block;
-}
-
-
-/* =========================================================
-   MOBILE OVERLAY
-========================================================= */
-
-.mobile-overlay {
     position: fixed;
 
-    top: 0;
-    left: 0;
+    z-index: 9998;
 
-    width: 100%;
+    inset: 76px 0 0 0;
 
-    height: 100dvh;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(3,16,31,.98),
+            rgba(5,27,48,.98)
+        );
 
-    max-height: 100dvh;
-
-    background: rgba(7, 24, 46, 0.98);
-
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-
-    display: none;
-
-    z-index: 1001;
+    backdrop-filter: blur(20px);
 
     overflow-y: auto;
 
-    overflow-x: hidden;
-
-    -webkit-overflow-scrolling: touch;
 }
 
-.mobile-overlay.active {
+
+.lp-mobile-menu.active {
+
     display: block;
+
 }
 
 
-/* =========================================================
-   MOBILE NAV
-========================================================= */
+.lp-mobile-inner {
 
-.mobile-nav {
-    min-height: 100%;
+    width: min(600px, calc(100% - 35px));
 
-    height: auto;
+    margin: auto;
 
-    padding: 80px 25px 40px;
+    padding: 25px 0 40px;
 
-    display: flex;
-
-    flex-direction: column;
 }
 
 
-/* =========================================================
-   MOBILE HEADER
-========================================================= */
+.lp-mobile-top {
 
-.mobile-header {
     display: flex;
 
     align-items: center;
 
     justify-content: space-between;
 
-    margin-bottom: 30px;
-}
+    padding-bottom: 25px;
 
-.mobile-brand {
-    font-family: 'SF Mono', 'Fira Code', monospace;
-}
+    border-bottom: 1px solid var(--lp-border);
 
-.mobile-brand .logo-text {
-    color: #52f5d4;
 }
 
 
-/* Close button */
+.lp-mobile-title {
 
-.close-menu-btn {
-    width: 42px;
-    height: 42px;
+    display: block;
 
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border: none;
-
-    background: transparent;
-
-    color: white;
-
-    font-size: 25px;
-
-    cursor: pointer;
-}
-
-
-/* =========================================================
-   MOBILE LIST
-========================================================= */
-
-.mobile-list {
-    list-style: none;
-
-    margin: 0;
-    padding: 0;
-}
-
-.mobile-item {
-    margin-bottom: 10px;
-}
-
-.mobile-link {
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-    width: 100%;
-
-    padding: 16px;
-
-    color: white;
-
-    text-decoration: none;
+    color: #fff;
 
     font-size: 18px;
 
-    border-radius: 8px;
+    font-weight: 800;
 
-    transition: 0.3s ease;
-}
-
-.mobile-link:hover,
-.mobile-item.active .mobile-link {
-    background: rgba(82, 245, 212, 0.08);
-
-    color: #52f5d4;
-}
-
-.mobile-icon {
-    width: 25px;
-
-    text-align: center;
 }
 
 
-/* =========================================================
-   MOBILE ACTIONS
-========================================================= */
+.lp-mobile-top small {
 
-.mobile-actions {
-    display: flex;
+    display: block;
 
-    flex-direction: column;
+    color: var(--lp-muted);
 
-    gap: 12px;
+    margin-top: 5px;
 
-    margin-top: 30px;
+    font-size: 11px;
 
-    padding-bottom: 30px;
 }
 
-.mobile-hire-btn,
-.mobile-cv-btn {
+
+.lp-mobile-close {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 9px;
+
+    border: 1px solid var(--lp-border);
+
+    background: rgba(255,255,255,.04);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+}
+
+
+.lp-mobile-nav {
+
+    padding: 25px 0;
+
+}
+
+
+.lp-mobile-nav a {
+
     display: flex;
 
     align-items: center;
-    justify-content: center;
+
+    gap: 14px;
+
+    padding: 16px 15px;
+
+    margin-bottom: 7px;
+
+    border-radius: 10px;
+
+    color: #c7d6e3;
+
+    text-decoration: none !important;
+
+    border: 1px solid transparent;
+
+    transition: .25s ease;
+
+}
+
+
+.lp-mobile-nav a i {
+
+    width: 22px;
+
+    color: var(--lp-blue);
+
+}
+
+
+.lp-mobile-nav a:hover {
+
+    color: #fff;
+
+    background: rgba(32,184,255,.07);
+
+    border-color: rgba(32,184,255,.15);
+
+    transform: translateX(4px);
+
+}
+
+
+.lp-mobile-actions {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
 
     gap: 10px;
 
-    width: 100%;
-
-    padding: 14px;
-
-    border-radius: 6px;
-
-    text-decoration: none;
-
-    font-weight: 600;
-
-    transition: 0.3s ease;
-}
-
-.mobile-hire-btn {
-    background: #ff2e97;
-
-    color: white;
-}
-
-.mobile-cv-btn {
-    background: #00b8ff;
-
-    color: #07182e;
 }
 
 
-/* =========================================================
-   DESKTOP
-========================================================= */
+.lp-mobile-hire,
+.lp-mobile-cv {
 
-@media (min-width: 901px) {
+    min-height: 50px;
 
-    .mobile-toggle,
-    .mobile-overlay {
-        display: none !important;
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    border-radius: 9px;
+
+    text-decoration: none !important;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.lp-mobile-hire {
+
+    color: #031522;
+
+    background: var(--lp-blue);
+
+}
+
+
+.lp-mobile-cv {
+
+    color: var(--lp-blue-light);
+
+    border: 1px solid rgba(32,184,255,.3);
+
+    background: rgba(32,184,255,.06);
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1050px) {
+
+    .lp-desktop-nav {
+
+        gap: 0;
+
+    }
+
+    .lp-nav-link {
+
+        padding-left: 9px;
+        padding-right: 9px;
+
+        font-size: 12px;
+
     }
 
 }
 
 
-/* =========================================================
-   TABLET / MOBILE
-========================================================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 850px) {
 
-    .nav-container {
-        padding: 0 20px;
+    .lp-navbar {
+
+        height: 68px;
+
     }
 
-    .desktop-nav {
+    .lp-nav-container {
+
+        width: calc(100% - 30px);
+
+    }
+
+    .lp-desktop-nav,
+    .lp-nav-actions {
+
         display: none;
+
     }
 
-    .nav-actions {
-        margin-left: auto;
-    }
+    .lp-mobile-toggle {
 
-    .nav-actions .hire-btn {
-        display: none;
-    }
-
-    .mobile-toggle {
         display: flex;
+
+    }
+
+    .lp-mobile-menu {
+
+        inset: 68px 0 0 0;
+
     }
 
 }
 
 
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
+@media (max-width: 480px) {
 
-@media (max-width: 576px) {
+    .lp-brand-mark {
 
-    .nav-container {
-        padding: 0 15px;
+        width: 39px;
+        height: 39px;
+
+        font-size: 12px;
+
     }
 
-    .logo-text {
-        font-size: 1.1rem;
+    .lp-brand-text strong {
+
+        font-size: 14px;
+
     }
 
-    .mobile-nav {
-        padding-left: 20px;
-        padding-right: 20px;
+    .lp-brand-text small {
+
+        font-size: 9px;
+
+    }
+
+    .lp-mobile-actions {
+
+        grid-template-columns: 1fr;
+
     }
 
 }
 
 </style>
 
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Mobile Menu Toggle
-  const mobileToggle = document.querySelector('.mobile-toggle');
-  const mobileOverlay = document.querySelector('.mobile-overlay');
-  const closeMenuBtn = document.querySelector('.close-menu-btn');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-  
-  // Toggle mobile menu
-  function toggleMobileMenu() {
 
-    mobileToggle.classList.toggle('active');
-    mobileOverlay.classList.toggle('active');
+document.addEventListener('DOMContentLoaded', function () {
 
-    if (mobileOverlay.classList.contains('active')) {
+    const navbar = document.getElementById('lpNavbar');
+
+    const toggle = document.getElementById('lpMobileToggle');
+
+    const menu = document.getElementById('lpMobileMenu');
+
+    const close = document.getElementById('lpMobileClose');
+
+
+    /* Navbar scroll */
+
+    function handleNavbarScroll() {
+
+        if (window.scrollY > 30) {
+
+            navbar.classList.add('scrolled');
+
+        } else {
+
+            navbar.classList.remove('scrolled');
+
+        }
+
+    }
+
+    window.addEventListener(
+        'scroll',
+        handleNavbarScroll,
+        { passive: true }
+    );
+
+    handleNavbarScroll();
+
+
+    /* Mobile menu */
+
+    function openMenu() {
+
+        menu.classList.add('active');
+
         document.body.style.overflow = 'hidden';
-    } else {
+
+    }
+
+
+    function closeMenu() {
+
+        menu.classList.remove('active');
+
         document.body.style.overflow = '';
-    }
-}
-  // Close mobile menu
- function closeMobileMenu() {
 
-    mobileToggle.classList.remove('active');
-    mobileOverlay.classList.remove('active');
+    }
 
-    document.body.style.overflow = '';
-}
-  // Event listeners
-  mobileToggle.addEventListener('click', toggleMobileMenu);
-  
-  if (closeMenuBtn) {
-    closeMenuBtn.addEventListener('click', closeMobileMenu);
-  }
-  
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-  });
-  
-  // Close menu when clicking outside
-  mobileOverlay.addEventListener('click', function(e) {
-    if (e.target === mobileOverlay) {
-      closeMobileMenu();
-    }
-  });
-  
-  // Header Scroll Effect
-  const header = document.querySelector('header');
-  
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-  
-  // Active Navigation Highlight
-  const navItems = document.querySelectorAll('.nav-item');
-  const mobileItems = document.querySelectorAll('.mobile-item');
-  const currentPath = window.location.pathname;
-  
-  // Function to set active state
-  function setActiveState(items, isMobile = false) {
-    items.forEach(item => {
-      const link = item.querySelector(isMobile ? '.mobile-link' : '.nav-link');
-      const href = link.getAttribute('href');
-      
-      // Remove active class first
-      item.classList.remove('active');
-      
-      // Check if current path matches
-      if (href === currentPath || 
-          (href === '/' && currentPath === '') ||
-          (currentPath !== '/' && href.includes(currentPath))) {
-        item.classList.add('active');
-      }
+
+    toggle.addEventListener('click', function () {
+
+        if (menu.classList.contains('active')) {
+
+            closeMenu();
+
+        } else {
+
+            openMenu();
+
+        }
+
     });
-  }
-  
-  // Set active state for both desktop and mobile
-  setActiveState(navItems);
-  setActiveState(mobileItems, true);
-  
-  // Add click effect to buttons
-  const buttons = document.querySelectorAll('.hire-btn, .cv-btn, .mobile-hire-btn, .mobile-cv-btn');
-  
-  buttons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      // Create ripple effect
-      const ripple = document.createElement('span');
-      const rect = this.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height);
-      const x = e.clientX - rect.left - size / 2;
-      const y = e.clientY - rect.top - size / 2;
-      
-      ripple.style.cssText = `
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.5);
-        transform: scale(0);
-        animation: ripple-animation 0.6s linear;
-        pointer-events: none;
-        width: ${size}px;
-        height: ${size}px;
-        left: ${x}px;
-        top: ${y}px;
-      `;
-      
-      this.appendChild(ripple);
-      
-      // Remove ripple after animation
-      setTimeout(() => {
-        ripple.remove();
-      }, 600);
-    });
-  });
-  
-  // Add CSS for ripple animation
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes ripple-animation {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-  `;
-  document.head.appendChild(style);
-  
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 80,
-          behavior: 'smooth'
+
+
+    close.addEventListener('click', closeMenu);
+
+
+    /* Close after clicking link */
+
+    menu.querySelectorAll('a').forEach(function (link) {
+
+        link.addEventListener('click', function () {
+
+            closeMenu();
+
         });
-        
-        // Close mobile menu if open
-        closeMobileMenu();
-      }
+
     });
-  });
-  
-  // Keyboard navigation support
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && mobileOverlay.classList.contains('active')) {
-      closeMobileMenu();
-    }
-  });
+
+
+    /* ESC */
+
+    document.addEventListener('keydown', function (event) {
+
+        if (event.key === 'Escape') {
+
+            closeMenu();
+
+        }
+
+    });
+
+
+    /* Active navigation */
+
+    const sections = document.querySelectorAll(
+        'section[id]'
+    );
+
+    const navLinks = document.querySelectorAll(
+        '.lp-nav-link'
+    );
+
+
+    window.addEventListener('scroll', function () {
+
+        let current = '';
+
+        sections.forEach(function (section) {
+
+            const top = section.offsetTop - 130;
+
+            if (window.scrollY >= top) {
+
+                current = section.getAttribute('id');
+
+            }
+
+        });
+
+
+        navLinks.forEach(function (link) {
+
+            link.classList.remove('active');
+
+            const href = link.getAttribute('href');
+
+            if (
+                current &&
+                href &&
+                href.includes('#' + current)
+            ) {
+
+                link.classList.add('active');
+
+            }
+
+        });
+
+    });
+
 });
+
 </script>

@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+Allow: /
+
+Sitemap: https://lakshman-developer.freehosting.dev/sitemap.xml

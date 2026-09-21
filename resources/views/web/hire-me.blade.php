@@ -1,697 +1,1314 @@
 @extends('web.layout')
+
 @section('title', 'Contact Me | Lakshman Pal | Full Stack Developer Portfolio')
 
-@push('styles')
+@section('content')
+
 <style>
-    /* Main container with more space below navbar */
-    .contact-wrapper {
-        background-color: #f8fafc;
-        min-height: calc(100vh - 120px);
-        padding: 100px 20px 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    /* =========================================================
+       CONTACT PAGE
+    ========================================================= */
+
+    .contact-page {
+        --contact-bg: #020817;
+        --contact-bg-soft: #07152e;
+        --contact-card: rgba(7, 24, 52, 0.72);
+        --contact-border: rgba(59, 130, 246, 0.38);
+        --contact-primary: #2196ff;
+        --contact-primary-light: #60a5fa;
+        --contact-purple: #5b4bff;
+        --contact-text: #f8fafc;
+        --contact-muted: #a9c2e5;
+        --contact-success: #00e5b0;
+
         position: relative;
+        min-height: calc(100vh - 70px);
+        overflow: hidden;
+        background:
+            radial-gradient(circle at 15% 20%, rgba(24, 76, 180, .18), transparent 25%),
+            radial-gradient(circle at 85% 25%, rgba(61, 75, 255, .12), transparent 28%),
+            linear-gradient(135deg, #020817 0%, #031127 48%, #020817 100%);
+        color: var(--contact-text);
+        padding: 55px 0 90px;
     }
 
-    /* Optional fade-in animation */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .contact-page *,
+    .contact-page *::before,
+    .contact-page *::after {
+        box-sizing: border-box;
     }
 
-    /* Contact card container */
     .contact-container {
+        width: min(1240px, calc(100% - 40px));
+        margin: 0 auto;
+        position: relative;
+        z-index: 5;
+    }
+
+    /* =========================================================
+       BACKGROUND GLOW
+    ========================================================= */
+
+    .contact-glow {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(.2px);
+    }
+
+    .contact-glow-one {
+        width: 190px;
+        height: 190px;
+        top: -75px;
+        left: -75px;
+        background: radial-gradient(
+            circle,
+            rgba(38, 101, 255, .85) 0%,
+            rgba(38, 101, 255, .25) 48%,
+            transparent 72%
+        );
+    }
+
+    .contact-glow-two {
+        width: 180px;
+        height: 180px;
+        top: 40px;
+        right: -55px;
+        background: radial-gradient(
+            circle,
+            rgba(72, 82, 255, .75) 0%,
+            rgba(72, 82, 255, .20) 48%,
+            transparent 72%
+        );
+    }
+
+    .contact-glow-three {
+        width: 90px;
+        height: 90px;
+        right: 4%;
+        bottom: 170px;
+        background: radial-gradient(
+            circle,
+            rgba(91, 48, 255, .75) 0%,
+            rgba(91, 48, 255, .15) 55%,
+            transparent 75%
+        );
+    }
+
+    .contact-glow-four {
+        width: 65px;
+        height: 65px;
+        left: 3%;
+        bottom: 100px;
+        background: radial-gradient(
+            circle,
+            rgba(45, 100, 255, .75) 0%,
+            rgba(45, 100, 255, .15) 55%,
+            transparent 75%
+        );
+    }
+
+    /* =========================================================
+       BOTTOM WAVE
+    ========================================================= */
+
+    .contact-wave {
+        position: absolute;
+        left: -5%;
+        bottom: -150px;
+        width: 110%;
+        height: 280px;
+        border-radius: 50% 50% 0 0;
+        background:
+            radial-gradient(
+                ellipse at center,
+                rgba(12, 53, 126, .72),
+                rgba(2, 8, 23, .1) 70%
+            );
+        border-top: 2px solid rgba(41, 101, 255, .5);
+        box-shadow: 0 -10px 50px rgba(21, 83, 220, .12);
+        transform: rotate(-2deg);
+    }
+
+    /* =========================================================
+       MAIN GRID
+    ========================================================= */
+
+    .contact-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        max-width: 1200px;
-        width: 100%;
-        background: white;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        animation: fadeInUp 0.6s ease-out;
-        margin-top: 20px;
+        grid-template-columns: minmax(0, .93fr) minmax(480px, 1.07fr);
+        gap: 70px;
+        align-items: start;
     }
 
-    /* Left Side: Contact Information - Updated Color */
-    .contact-info-side {
-        background: linear-gradient(135deg, #042a7c 0%, #020d2b 100%);
-        color: white;
-        padding: 50px;
-        position: relative;
-        overflow: hidden;
+    /* =========================================================
+       LEFT SIDE
+    ========================================================= */
+
+    .contact-left {
+        padding-top: 12px;
     }
 
-    .contact-info-side::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100px;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        transform: translate(30%, -30%);
-    }
-
-    .contact-info-side::after {
-        content: '';
-        position: absolute;
-        bottom: -50px;
-        left: -50px;
-        width: 200px;
-        height: 200px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 50%;
-    }
-
-    .contact-header h1 {
-        font-size: 2.8rem;
+    .availability-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 14px;
+        border-radius: 50px;
+        color: #21e9c0;
+        background: rgba(0, 229, 176, .10);
+        border: 1px solid rgba(0, 229, 176, .25);
+        box-shadow: 0 0 20px rgba(0, 229, 176, .06);
+        font-size: 12px;
         font-weight: 700;
-        margin-bottom: 15px;
-        position: relative;
-        z-index: 1;
+        letter-spacing: .5px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
     }
 
-    .contact-tagline {
-        font-size: 1.1rem;
-        opacity: 0.9;
-        margin-bottom: 30px;
-        position: relative;
-        z-index: 1;
-        line-height: 1.6;
+    .availability-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #19e6bd;
+        box-shadow: 0 0 12px #19e6bd;
+        animation: pulseDot 2s infinite;
     }
 
-    .contact-details {
-        margin-top: 40px;
-        position: relative;
-        z-index: 1;
+    @keyframes pulseDot {
+        0%, 100% {
+            box-shadow: 0 0 8px rgba(25, 230, 189, .45);
+        }
+
+        50% {
+            box-shadow: 0 0 18px rgba(25, 230, 189, .9);
+        }
     }
 
-    .contact-item {
+    .contact-heading {
+        margin: 0;
+        max-width: 570px;
+        font-size: clamp(42px, 5vw, 63px);
+        line-height: 1.04;
+        font-weight: 800;
+        letter-spacing: -2.8px;
+        color: #ffffff;
+    }
+
+    .contact-heading span {
+        display: block;
+        background: linear-gradient(
+            90deg,
+            #1e9bff 0%,
+            #238bff 45%,
+            #714cff 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+    }
+
+    .contact-intro {
+        max-width: 530px;
+        margin: 20px 0 30px;
+        color: var(--contact-muted);
+        font-size: 17px;
+        line-height: 1.7;
+    }
+
+    /* =========================================================
+       FLOATING INFORMATION CARDS
+    ========================================================= */
+
+    .contact-info-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .contact-info-card {
         display: flex;
         align-items: center;
-        margin-bottom: 25px;
+        gap: 18px;
+        min-height: 76px;
+        padding: 12px 17px;
+        border-radius: 11px;
+        background:
+            linear-gradient(
+                135deg,
+                rgba(9, 30, 65, .84),
+                rgba(4, 18, 43, .68)
+            );
+        border: 1px solid rgba(53, 119, 220, .38);
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.025),
+            0 10px 35px rgba(0,0,0,.12);
+        transition: .3s ease;
+    }
+
+    .contact-info-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(49, 142, 255, .65);
+        box-shadow:
+            0 12px 35px rgba(0, 78, 255, .10),
+            inset 0 1px 0 rgba(255,255,255,.03);
     }
 
     .contact-icon {
-        width: 50px;
-        height: 50px;
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 12px;
+        width: 51px;
+        height: 51px;
+        min-width: 51px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 15px;
-        font-size: 1.2rem;
+        border-radius: 50%;
+        color: #67b7ff;
+        background:
+            radial-gradient(
+                circle at 35% 30%,
+                #1d73d9,
+                #0d3e8f 75%
+            );
+        box-shadow:
+            inset 0 0 0 1px rgba(255,255,255,.08),
+            0 6px 18px rgba(0,80,200,.25);
+        font-size: 21px;
     }
 
-    .contact-text h4 {
-        font-size: 1rem;
-        font-weight: 500;
-        margin-bottom: 5px;
-        opacity: 0.8;
-    }
-
-    .contact-text p {
-        font-size: 1.1rem;
-        font-weight: 500;
-    }
-
-    .quick-links-section {
-        margin-top: 40px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .quick-links-section h3 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
+    .contact-info-label {
+        display: block;
+        margin-bottom: 3px;
+        color: #8bb8e9;
+        font-size: 11px;
         font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
     }
 
-    .quick-links {
-        list-style: none;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .quick-links li {
-        margin-bottom: 8px;
-    }
-
-    .quick-links a {
-        color: white;
-        text-decoration: none;
-        opacity: 0.9;
-        transition: opacity 0.3s;
-        font-size: 0.95rem;
-    }
-
-    .quick-links a:hover {
-        opacity: 1;
-        text-decoration: underline;
-    }
-
-    .social-connect {
-        margin-top: 30px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .social-connect h3 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
+    .contact-info-value {
+        color: #f4f8ff;
+        font-size: 15px;
         font-weight: 600;
+        word-break: break-word;
     }
 
-    .social-connect p {
-        opacity: 0.9;
-        margin-bottom: 15px;
-        font-size: 0.95rem;
+    /* =========================================================
+       OPPORTUNITY CARD
+    ========================================================= */
+
+    .opportunity-card {
+        margin-top: 18px;
+        padding: 19px 20px;
+        border-radius: 12px;
+        border: 1px solid #00d9aa;
+        background:
+            linear-gradient(
+                135deg,
+                rgba(0, 180, 150, .09),
+                rgba(3, 31, 55, .60)
+            );
+        box-shadow:
+            0 10px 30px rgba(0, 220, 170, .05),
+            inset 0 1px 0 rgba(255,255,255,.02);
+    }
+
+    .opportunity-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 7px;
+        color: #15e5bd;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .opportunity-title i {
+        font-size: 12px;
+        text-shadow: 0 0 10px #00e5b0;
+    }
+
+    .opportunity-text {
+        margin: 0;
+        padding-left: 29px;
+        max-width: 500px;
+        color: #b7d2f2;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    /* =========================================================
+       SOCIAL
+    ========================================================= */
+
+    .social-title {
+        margin: 27px 0 13px;
+        color: #8fb8e7;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
     }
 
     .social-links {
         display: flex;
-        gap: 15px;
-        margin-top: 10px;
+        gap: 14px;
     }
 
     .social-link {
-        width: 40px;
-        height: 40px;
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 50%;
+        width: 58px;
+        height: 58px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
+        border-radius: 11px;
+        color: #e8f3ff;
+        background: rgba(7, 28, 61, .75);
+        border: 1px solid rgba(51, 102, 175, .28);
+        font-size: 24px;
         text-decoration: none;
-        transition: background 0.3s, transform 0.3s;
+        transition: .3s ease;
     }
 
     .social-link:hover {
-        background: rgba(255, 255, 255, 0.25);
-        transform: translateY(-3px);
+        color: #fff;
+        transform: translateY(-5px);
+        border-color: rgba(42, 132, 255, .8);
+        background: rgba(14, 53, 110, .9);
+        box-shadow: 0 10px 25px rgba(0, 104, 255, .16);
     }
 
-    /* Right Side: Contact Form */
-    .contact-form-side {
-        padding: 50px;
-        background: white;
+    /* =========================================================
+       FORM PANEL
+    ========================================================= */
+
+    .contact-form-panel {
+        position: relative;
+        padding: 34px 39px 30px;
+        border-radius: 17px;
+        background:
+            linear-gradient(
+                145deg,
+                rgba(8, 27, 62, .92),
+                rgba(4, 16, 39, .89)
+            );
+        border: 1px solid rgba(31, 149, 255, .72);
+        box-shadow:
+            0 0 0 1px rgba(75, 81, 255, .12),
+            0 25px 70px rgba(0, 0, 0, .28),
+            0 0 45px rgba(0, 94, 255, .08);
+        overflow: hidden;
     }
 
-    .form-header h2 {
-        font-size: 2rem;
+    .contact-form-panel::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            #29a4ff,
+            #6257ff,
+            transparent
+        );
+    }
+
+    .form-eyebrow {
+        margin-bottom: 8px;
+        color: #9fc5f4;
+        font-size: 11px;
         font-weight: 600;
-        margin-bottom: 10px;
-        color: #1a1a1a;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
     }
 
-    .form-header p {
-        color: #666;
-        margin-bottom: 30px;
-        font-size: 1rem;
-        line-height: 1.5;
+    .form-title {
+        margin: 0;
+        color: #ffffff;
+        font-size: 31px;
+        font-weight: 800;
+        letter-spacing: -.7px;
+    }
+
+    .form-description {
+        max-width: 510px;
+        margin: 9px 0 23px;
+        color: #a9c5e9;
+        font-size: 15px;
+        line-height: 1.7;
     }
 
     .form-group {
-        margin-bottom: 25px;
+        margin-bottom: 17px;
     }
 
-    label {
+    .form-label {
         display: block;
-        margin-bottom: 8px;
-        font-weight: 500;
-        color: #444;
-        font-size: 0.95rem;
+        margin-bottom: 7px;
+        color: #eef6ff;
+        font-size: 13px;
+        font-weight: 600;
     }
 
-    .required::after {
-        content: " *";
-        color: #e63946;
+    .required {
+        color: #ff6b7a;
     }
 
-    input, textarea {
+    .form-control-custom {
         width: 100%;
-        padding: 14px 16px;
-        border: 1px solid #e1e5e9;
+        min-height: 47px;
+        padding: 12px 14px;
+        border: 1px solid rgba(60, 114, 183, .48);
         border-radius: 10px;
-        font-family: 'Poppins', sans-serif;
-        font-size: 1rem;
-        transition: all 0.3s;
-        background: #f8fafc;
+        outline: none;
+        background: rgba(3, 18, 42, .68);
+        color: #f5f9ff;
+        font-size: 13px;
+        transition: .25s ease;
     }
 
-    input:focus, textarea:focus {
-        outline: none;
-        border-color: #2563eb;
-        background: white;
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    .form-control-custom::placeholder {
+        color: #688ab5;
+    }
+
+    .form-control-custom:focus {
+        border-color: #2196ff;
+        background: rgba(4, 22, 50, .88);
+        box-shadow:
+            0 0 0 3px rgba(33, 150, 255, .09),
+            0 0 22px rgba(33, 150, 255, .05);
+    }
+
+    textarea.form-control-custom {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .form-error {
+        margin-top: 5px;
+        color: #ff7180;
+        font-size: 12px;
+    }
+
+    /* =========================================================
+       HIRING BOX
+    ========================================================= */
+
+    .hiring-box {
+        margin: 3px 0 18px;
+        padding: 12px 17px 14px;
+        border-radius: 10px;
+        border: 1px solid rgba(56, 108, 176, .38);
+        background: rgba(8, 31, 65, .62);
+    }
+
+    .hiring-question {
+        margin-bottom: 13px;
+        color: #edf5ff;
+        font-size: 13px;
+        font-weight: 600;
     }
 
     .hiring-options {
-        background: #eff6ff;
-        padding: 20px;
-        border-radius: 10px;
-        margin-bottom: 25px;
-        border-left: 4px solid #2563eb;
-    }
-
-    .hiring-options label {
-        display: block;
-        margin-bottom: 12px;
-        font-weight: 600;
-        color: #333;
-    }
-
-    .radio-group {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 20px;
     }
 
     .radio-option {
+        position: relative;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+        gap: 11px;
+        color: #bcd1ec;
+        font-size: 13px;
+        line-height: 1.55;
+        cursor: pointer;
     }
 
     .radio-option input {
-        width: auto;
-        margin-right: 8px;
+        appearance: none;
+        width: 23px;
+        height: 23px;
+        min-width: 23px;
+        margin: 0;
+        border: 1px solid #4471aa;
+        border-radius: 50%;
+        background: transparent;
         cursor: pointer;
+        position: relative;
     }
 
-    .radio-option label {
-        margin-bottom: 0;
-        cursor: pointer;
-        font-weight: 500;
+    .radio-option input:checked {
+        border-color: #2d91ff;
+        box-shadow: 0 0 0 4px rgba(45, 145, 255, .05);
     }
 
-    .submit-btn {
-        background: linear-gradient(to right, #2563eb, #1d4ed8);
-        color: white;
-        border: none;
-        padding: 16px 32px;
-        border-radius: 10px;
-        font-size: 1.1rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s;
+    .radio-option input:checked::after {
+        content: "";
+        position: absolute;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #278dff;
+        top: 6px;
+        left: 6px;
+        box-shadow: 0 0 9px rgba(39, 141, 255, .7);
+    }
+
+    /* =========================================================
+       ALERTS
+    ========================================================= */
+
+    .contact-alert {
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        border-radius: 9px;
+        font-size: 13px;
+    }
+
+    .contact-alert-success {
+        color: #8df7dc;
+        border: 1px solid rgba(0, 229, 176, .35);
+        background: rgba(0, 229, 176, .08);
+    }
+
+    .contact-alert-danger {
+        color: #ff9ba6;
+        border: 1px solid rgba(255, 82, 103, .35);
+        background: rgba(255, 82, 103, .08);
+    }
+
+    /* =========================================================
+       SEND BUTTON
+    ========================================================= */
+
+    .send-button {
         width: 100%;
+        min-height: 53px;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 10px;
-        margin-top: 10px;
+        border: 0;
+        border-radius: 10px;
+        color: #fff;
+        background: linear-gradient(
+            100deg,
+            #1596ff 0%,
+            #237df4 45%,
+            #5245ee 100%
+        );
+        box-shadow:
+            0 8px 25px rgba(37, 115, 255, .22),
+            inset 0 1px 0 rgba(255,255,255,.18);
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: .3s ease;
     }
 
-    .submit-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 7px 15px rgba(37, 99, 235, 0.3);
+    .send-button:hover {
+        transform: translateY(-2px);
+        box-shadow:
+            0 12px 32px rgba(37, 115, 255, .30),
+            inset 0 1px 0 rgba(255,255,255,.2);
     }
 
-    .status-message {
-        padding: 12px 16px;
-        border-radius: 8px;
-        margin: 20px 0;
-        text-align: center;
-        font-size: 0.95rem;
+    .send-button:active {
+        transform: translateY(0);
     }
 
-    .success {
-        background-color: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
+    /* =========================================================
+       RESPONSE INFO
+    ========================================================= */
+
+    .response-info {
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+        margin-top: 19px;
+        color: #91b2d9;
+        font-size: 12px;
+        line-height: 1.7;
     }
 
-    .error {
-        background-color: #f8d7da;
-        color: #721c24;
-        border: 1px solid #f5c6cb;
+    .response-info i {
+        margin-top: 3px;
+        color: #79adff;
+        font-size: 22px;
     }
 
-    .form-footer {
-        text-align: center;
-        margin-top: 30px;
-        color: #666;
-        font-size: 0.9rem;
-        padding-top: 20px;
-        border-top: 1px solid #eee;
+    .response-info strong {
+        color: #bdd8f8;
+        font-weight: 500;
     }
 
-    .is-invalid {
-        border-color: #e63946 !important;
-    }
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
 
-    .invalid-feedback {
-        color: #e63946;
-        font-size: 0.875rem;
-        margin-top: 5px;
-        display: none;
-    }
-
-    .is-invalid + .invalid-feedback {
-        display: block;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 992px) {
-        .contact-container {
+    @media (max-width: 1100px) {
+        .contact-grid {
             grid-template-columns: 1fr;
+            gap: 45px;
+        }
+
+        .contact-left {
+            max-width: 780px;
+            margin: auto;
+        }
+
+        .contact-form-panel {
+            max-width: 780px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .contact-heading {
             max-width: 700px;
-            margin-top: 15px;
         }
-        
-        .contact-info-side, .contact-form-side {
-            padding: 40px 30px;
-        }
-        
-        .quick-links {
-            grid-template-columns: repeat(2, 1fr);
+
+        .contact-intro {
+            max-width: 650px;
         }
     }
 
     @media (max-width: 768px) {
-        .contact-wrapper {
-            padding: 80px 15px 20px;
+        .contact-page {
+            padding: 35px 0 70px;
         }
-        
+
         .contact-container {
-            margin-top: 10px;
+            width: min(100% - 28px, 680px);
         }
-        
-        .contact-header h1 {
-            font-size: 2.2rem;
+
+        .contact-heading {
+            font-size: 44px;
+            letter-spacing: -2px;
         }
-        
-        .contact-info-side, .contact-form-side {
-            padding: 30px 20px;
+
+        .contact-intro {
+            font-size: 15px;
         }
-        
-        .radio-group {
-            flex-direction: column;
-            gap: 10px;
+
+        .contact-form-panel {
+            padding: 28px 22px 25px;
         }
-        
-        .quick-links {
+
+        .form-title {
+            font-size: 27px;
+        }
+
+        .hiring-options {
             grid-template-columns: 1fr;
+            gap: 15px;
         }
     }
 
-    @media (max-width: 576px) {
-        .contact-wrapper {
-            padding: 70px 10px 15px;
+    @media (max-width: 480px) {
+        .contact-page {
+            padding-top: 25px;
         }
-        
+
         .contact-container {
-            margin-top: 5px;
+            width: calc(100% - 22px);
         }
-        
-        .contact-item {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        
-        .contact-icon {
-            margin-bottom: 10px;
-            margin-right: 0;
-        }
-        
-        .contact-text h4,
-        .contact-text p {
-            text-align: left;
-            width: 100%;
-        }
-    }
 
-    @media (max-width: 400px) {
-        .contact-wrapper {
-            padding: 60px 8px 10px;
+        .availability-badge {
+            font-size: 10px;
+        }
+
+        .contact-heading {
+            font-size: 37px;
+            line-height: 1.08;
+        }
+
+        .contact-info-card {
+            min-height: 70px;
+            gap: 12px;
+            padding: 10px 12px;
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            font-size: 18px;
+        }
+
+        .contact-info-value {
+            font-size: 13px;
+        }
+
+        .opportunity-card {
+            padding: 16px;
+        }
+
+        .opportunity-text {
+            padding-left: 0;
+        }
+
+        .social-link {
+            width: 52px;
+            height: 52px;
+        }
+
+        .contact-form-panel {
+            padding: 23px 16px;
+            border-radius: 13px;
+        }
+
+        .form-title {
+            font-size: 24px;
+        }
+
+        .form-description {
+            font-size: 13px;
         }
     }
 </style>
-@endpush
 
-@section('content')
-<div class="contact-wrapper">
+
+<div class="contact-page">
+
+    {{-- Background decorative elements --}}
+    <div class="contact-glow contact-glow-one"></div>
+    <div class="contact-glow contact-glow-two"></div>
+    <div class="contact-glow contact-glow-three"></div>
+    <div class="contact-glow contact-glow-four"></div>
+    <div class="contact-wave"></div>
+
+
     <div class="contact-container">
-        <!-- Left Side: Contact Information -->
-        <div class="contact-info-side">
-            <div class="contact-header">
-                <h1>Let's Build Something Amazing Together </h1>
-                <p class="contact-tagline">I'm currently available for freelance work and full-time opportunities. Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
-            </div>
-            
-            <div class="contact-details">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h4>Email</h4>
-                        <p>pallakshman0@gmail.com</p>
-                    </div>
+
+        <div class="contact-grid">
+
+            {{-- =====================================================
+                 LEFT SIDE
+            ====================================================== --}}
+            <div class="contact-left">
+
+                <div class="availability-badge">
+                    <span class="availability-dot"></span>
+                    Available for opportunities
                 </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
+
+
+                <h1 class="contact-heading">
+                    Let's build
+                    <span>something together.</span>
+                </h1>
+
+
+                <p class="contact-intro">
+                    Have a project in mind, a job opportunity, or simply
+                    want to connect? Send me a message and I'll get back
+                    to you as soon as possible.
+                </p>
+
+
+                {{-- Contact Information --}}
+                <div class="contact-info-list">
+
+                    {{-- Email --}}
+                    <div class="contact-info-card">
+
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+
+                        <div>
+                            <span class="contact-info-label">
+                                Email
+                            </span>
+
+                            <div class="contact-info-value">
+                                pallakshman0@gmail.com
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="contact-text">
-                        <h4>Phone</h4>
-                        <p>+91 6296214817</p>
+
+
+                    {{-- Location --}}
+                    <div class="contact-info-card">
+
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+
+                        <div>
+                            <span class="contact-info-label">
+                                Location
+                            </span>
+
+                            <div class="contact-info-value">
+                                Kolkata, India
+                            </div>
+                        </div>
+
                     </div>
+
+
+                    {{-- Current Role --}}
+                    <div class="contact-info-card">
+
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+
+                        <div>
+                            <span class="contact-info-label">
+                                Currently
+                            </span>
+
+                            <div class="contact-info-value">
+                                Backend Developer · Software Developer
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
-            </div>
-            
-            <div class="quick-links-section">
-                <h3>Quick Links</h3>
-                <ul class="quick-links">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('about') }}">About</a></li>
-                    <li><a href="{{ url('/#skills') }}">Skills</a></li>
-                    <li><a href="{{ url('/#projects') }}">Projects</a></li>
-                    <li><a href="{{ route('about') }}">Experience</a></li>
-                    {{-- <li><a href="">Portfolio</a></li> --}}
-                </ul>
-            </div>
-            
-            <div class="social-connect">
-                <h3>Connect With Me</h3>
-                <p>Follow me on social media for the latest updates and insights.</p>
+
+
+                {{-- Opportunity --}}
+                <div class="opportunity-card">
+
+                    <div class="opportunity-title">
+                        <i class="fa-solid fa-circle"></i>
+
+                        <span>
+                            Open to professional opportunities
+                        </span>
+                    </div>
+
+                    <p class="opportunity-text">
+                        I'm interested in backend development, full-stack
+                        development, scalable web applications, API development
+                        and challenging software projects.
+                    </p>
+
+                </div>
+
+
+                {{-- Social --}}
+                <div class="social-title">
+                    Connect with me
+                </div>
+
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/lakshman-pal-285b172aa" class="social-link" title="LinkedIn">
-                        <i class="fab fa-linkedin-in" style="color: #0077B5;"></i>
+
+                    <a
+                        href="https://www.linkedin.com/in/lakshman-pal-285b172aa/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="social-link"
+                        aria-label="LinkedIn"
+                    >
+                        <i class="fa-brands fa-linkedin-in"></i>
                     </a>
-                    <a href="#" class="social-link" title="GitHub" >
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
+
+
+                    <a
+                        href="https://github.com/LakshmanMCA"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="social-link"
+                        aria-label="GitHub"
+                    >
+                        <i class="fa-brands fa-github"></i>
                     </a>
-                    <a href="https://www.facebook.com/lakshman.pal.71216" class="social-link" title="Facebook" target="_blank">
-                        <i class="fab fa-facebook-f" style="color: #4267B2;"></i>
+
+
+                    <a
+                        href="#"
+                        class="social-link"
+                        aria-label="Instagram"
+                    >
+                        <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="https://www.instagram.com/lakshman.pal.71216" class="social-link" title="Instagram" target="_blank">
-                        <i class="fab fa-instagram" style="color: #e1306c;"></i>
+
+
+                    <a
+                        href="#"
+                        class="social-link"
+                        aria-label="Facebook"
+                    >
+                        <i class="fa-brands fa-facebook-f"></i>
                     </a>
+
                 </div>
+
             </div>
-        </div>
 
-        <!-- Right Side: Contact Form -->
-        <div class="contact-form-side">
-            <div class="form-header">
-                <h2>Send a Message</h2>
-                <p>Fill out the form below to contact me or discuss potential hiring opportunities.</p>
-            </div>
 
-            @if(session('success'))
-                <div class="status-message success">
-                    {{ session('success') }}
-                </div>
-            @endif
+            {{-- =====================================================
+                 RIGHT SIDE FORM
+            ====================================================== --}}
+            <div class="contact-form-panel">
 
-            @if($errors->any())
-                <div class="status-message error">
-                    @foreach($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach
-                </div>
-            @endif
-
-            <form id="contactForm" action="{{ route('contact.store') }}" method="POST">
-                @csrf
-                
-                <div class="form-group">
-                    <label for="name" class="required">Full Name</label>
-                    <input type="text" id="name" name="name" 
-                           value="{{ old('name') }}" 
-                           placeholder="Enter your full name" 
-                           class="{{ $errors->has('name') ? 'is-invalid' : '' }}"
-                           required>
-                    @if($errors->has('name'))
-                        <div class="invalid-feedback">{{ $errors->first('name') }}</div>
-                    @endif
+                <div class="form-eyebrow">
+                    Start a conversation
                 </div>
 
-                <div class="form-group">
-                    <label for="email" class="required">Email Address</label>
-                    <input type="email" id="email" name="email" 
-                           value="{{ old('email') }}" 
-                           placeholder="Enter your email address" 
-                           class="{{ $errors->has('email') ? 'is-invalid' : '' }}"
-                           required>
-                    @if($errors->has('email'))
-                        <div class="invalid-feedback">{{ $errors->first('email') }}</div>
-                    @endif
-                </div>
+                <h2 class="form-title">
+                    Send me a message
+                </h2>
 
-                <div class="form-group">
-                    <label for="subject" class="required">Subject</label>
-                    <input type="text" id="subject" name="subject" 
-                           value="{{ old('subject') }}" 
-                           placeholder="What is this regarding?" 
-                           class="{{ $errors->has('subject') ? 'is-invalid' : '' }}"
-                           required>
-                    @if($errors->has('subject'))
-                        <div class="invalid-feedback">{{ $errors->first('subject') }}</div>
-                    @endif
-                </div>
+                <p class="form-description">
+                    Tell me a little about your project, opportunity,
+                    or inquiry. I'll respond as soon as possible.
+                </p>
 
-                <div class="hiring-options">
-                    <label>Is this a hiring inquiry?</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="hire-yes" name="is_hiring" value="1" 
-                                   {{ old('is_hiring') == '1' ? 'checked' : '' }}>
-                            <label for="hire-yes">Yes, I'd like to discuss a job opportunity</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="hire-no" name="is_hiring" value="0" 
-                                   {{ old('is_hiring') == '0' || !old('is_hiring') ? 'checked' : '' }}>
-                            <label for="hire-no">No, this is a general inquiry</label>
-                        </div>
+
+                {{-- Success --}}
+                @if(session('success'))
+                    <div class="contact-alert contact-alert-success">
+                        <i class="fa-solid fa-circle-check me-1"></i>
+                        {{ session('success') }}
                     </div>
-                    @if($errors->has('is_hiring'))
-                        <div class="invalid-feedback">{{ $errors->first('is_hiring') }}</div>
-                    @endif
-                </div>
+                @endif
 
-                <div class="form-group">
-                    <label for="message" class="required">Message</label>
-                    <textarea id="message" name="message" rows="6" 
-                              placeholder="Please provide details about your inquiry..." 
-                              class="{{ $errors->has('message') ? 'is-invalid' : '' }}"
-                              required>{{ old('message') }}</textarea>
-                    @if($errors->has('message'))
-                        <div class="invalid-feedback">{{ $errors->first('message') }}</div>
-                    @endif
-                </div>
 
-                <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i> Send Message
-                </button>
-            </form>
+                {{-- Validation Errors --}}
+                @if($errors->any())
+                    <div class="contact-alert contact-alert-danger">
+                        <strong>
+                            Please check the following:
+                        </strong>
 
-            <div class="form-footer">
-                <p>I typically respond within 24-48 hours. For urgent matters, please mention "URGENT" in your subject line.</p>
+                        <ul class="mb-0 mt-2 ps-3">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+
+                <form
+                    action="{{ route('contact.store') }}"
+                    method="POST"
+                    id="contactForm"
+                    novalidate
+                >
+
+                    @csrf
+
+
+                    {{-- Full Name --}}
+                    <div class="form-group">
+
+                        <label
+                            for="name"
+                            class="form-label"
+                        >
+                            Full Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            class="form-control-custom"
+                            value="{{ old('name') }}"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required
+                        >
+
+                        @error('name')
+                            <div class="form-error">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+                    </div>
+
+
+                    {{-- Email --}}
+                    <div class="form-group">
+
+                        <label
+                            for="email"
+                            class="form-label"
+                        >
+                            Email Address
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            class="form-control-custom"
+                            value="{{ old('email') }}"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                            required
+                        >
+
+                        @error('email')
+                            <div class="form-error">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+                    </div>
+
+
+                    {{-- Subject --}}
+                    <div class="form-group">
+
+                        <label
+                            for="subject"
+                            class="form-label"
+                        >
+                            Subject
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="subject"
+                            id="subject"
+                            class="form-control-custom"
+                            value="{{ old('subject') }}"
+                            placeholder="What is this regarding?"
+                            required
+                        >
+
+                        @error('subject')
+                            <div class="form-error">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+                    </div>
+
+
+                    {{-- Hiring Inquiry --}}
+                    <div class="hiring-box">
+
+                        <div class="hiring-question">
+                            Is this a hiring inquiry?
+                        </div>
+
+                        <div class="hiring-options">
+
+                            <label class="radio-option">
+
+                                <input
+                                    type="radio"
+                                    name="is_hiring"
+                                    value="yes"
+                                    {{ old('is_hiring', 'yes') === 'yes' ? 'checked' : '' }}
+                                >
+
+                                <span>
+                                    Yes, I'd like to discuss
+                                    a job opportunity
+                                </span>
+
+                            </label>
+
+
+                            <label class="radio-option">
+
+                                <input
+                                    type="radio"
+                                    name="is_hiring"
+                                    value="no"
+                                    {{ old('is_hiring') === 'no' ? 'checked' : '' }}
+                                >
+
+                                <span>
+                                    No, this is a general
+                                    inquiry
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- Message --}}
+                    <div class="form-group">
+
+                        <label
+                            for="message"
+                            class="form-label"
+                        >
+                            Message
+                            <span class="required">*</span>
+                        </label>
+
+                        <textarea
+                            name="message"
+                            id="message"
+                            class="form-control-custom"
+                            placeholder="Tell me about your project or opportunity..."
+                            required
+                        >{{ old('message') }}</textarea>
+
+                        @error('message')
+                            <div class="form-error">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+                    </div>
+
+
+                    {{-- Submit --}}
+                    <button
+                        type="submit"
+                        class="send-button"
+                        id="sendMessageBtn"
+                    >
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        <span>
+                            Send Message
+                        </span>
+                    </button>
+
+
+                    {{-- Response Time --}}
+                    <div class="response-info">
+
+                        <i class="fa-regular fa-clock"></i>
+
+                        <div>
+                            <strong>
+                                I typically respond within 24–48 hours.
+                            </strong>
+
+                            <br>
+
+                            For urgent matters, mention
+                            <strong>"URGENT"</strong>
+                            in your subject.
+                        </div>
+
+                    </div>
+
+                </form>
+
             </div>
-        </div>
-    </div>
-</div>
-@endsection
 
-@push('scripts')
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('contactForm');
-        const requiredFields = form.querySelectorAll('[required]');
-        
-        // Real-time validation
-        requiredFields.forEach(field => {
-            field.addEventListener('blur', function() {
-                validateField(this);
-            });
-            
-            field.addEventListener('input', function() {
-                if (this.classList.contains('is-invalid')) {
-                    validateField(this);
-                }
-            });
+document.addEventListener('DOMContentLoaded', function () {
+
+    const form = document.getElementById('contactForm');
+    const button = document.getElementById('sendMessageBtn');
+
+    if (!form || !button) {
+        return;
+    }
+
+    form.addEventListener('submit', function (event) {
+
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const subject = document.getElementById('subject');
+        const message = document.getElementById('message');
+
+        let valid = true;
+
+        const fields = [
+            name,
+            email,
+            subject,
+            message
+        ];
+
+        fields.forEach(function (field) {
+
+            field.style.borderColor = '';
+
+            if (!field.value.trim()) {
+
+                field.style.borderColor = '#ff5d70';
+
+                valid = false;
+            }
+
         });
-        
-        function validateField(field) {
-            const value = field.value.trim();
-            const errorDiv = field.nextElementSibling;
-            
-            if (!value) {
-                field.classList.add('is-invalid');
-                if (errorDiv && errorDiv.classList.contains('invalid-feedback')) {
-                    errorDiv.textContent = 'This field is required.';
-                    errorDiv.style.display = 'block';
-                }
-                return false;
+
+
+        if (email.value.trim()) {
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email.value.trim())) {
+
+                email.style.borderColor = '#ff5d70';
+
+                valid = false;
             }
-            
-            // Email validation
-            if (field.type === 'email') {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(value)) {
-                    field.classList.add('is-invalid');
-                    if (errorDiv && errorDiv.classList.contains('invalid-feedback')) {
-                        errorDiv.textContent = 'Please enter a valid email address.';
-                        errorDiv.style.display = 'block';
-                    }
-                    return false;
-                }
-            }
-            
-            // Clear error state
-            field.classList.remove('is-invalid');
-            if (errorDiv && errorDiv.classList.contains('invalid-feedback')) {
-                errorDiv.style.display = 'none';
-            }
-            return true;
         }
-        
-        // Form submission
-        form.addEventListener('submit', function(e) {
-            let isValid = true;
-            
-            // Validate all required fields
-            requiredFields.forEach(field => {
-                if (!validateField(field)) {
-                    isValid = false;
-                }
-            });
-            
-            if (!isValid) {
-                e.preventDefault();
-                
-                // Show error message
-                const statusMessage = document.querySelector('.status-message');
-                if (!statusMessage || !statusMessage.classList.contains('error')) {
-                    const formHeader = document.querySelector('.form-header');
-                    const errorDiv = document.createElement('div');
-                    errorDiv.className = 'status-message error';
-                    errorDiv.innerHTML = '<p>Please correct the errors in the form.</p>';
-                    formHeader.insertAdjacentElement('afterend', errorDiv);
-                    
-                    // Auto-remove after 5 seconds
-                    setTimeout(() => {
-                        errorDiv.remove();
-                    }, 5000);
-                }
+
+
+        if (!valid) {
+
+            event.preventDefault();
+
+            const firstInvalid =
+                form.querySelector(
+                    'input[style*="border-color"], textarea[style*="border-color"]'
+                );
+
+            if (firstInvalid) {
+                firstInvalid.focus();
             }
-        });
+
+            return;
+        }
+
+
+        button.disabled = true;
+
+        button.innerHTML = `
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            <span>Sending...</span>
+        `;
+
     });
+
+
+    /* Remove red border while typing */
+    form.querySelectorAll(
+        'input, textarea'
+    ).forEach(function (field) {
+
+        field.addEventListener('input', function () {
+
+            if (field.value.trim()) {
+                field.style.borderColor = '';
+            }
+
+        });
+
+    });
+
+});
 </script>
-@endpush
+
+@endsection

@@ -68,15 +68,60 @@
         line-height: 2;
     }
 
-    .skill-badge {
-        display: inline-block;
-        padding: 7px 14px;
-        margin: 5px;
-        border-radius: 20px;
+    /* Technologies grid */
+    .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+        gap: 14px;
+    }
+
+    .tech-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 16px 8px;
+        border-radius: 14px;
         background: #07182e;
-        color: #4aa9ff;
-        border: 1px solid #4aa9ff;
-        font-size: 14px;
+        border: 1px solid rgba(74, 169, 255, 0.2);
+        transition: 0.3s ease;
+    }
+
+    .tech-item:hover {
+        transform: translateY(-6px);
+        border-color: var(--tech-color, #4aa9ff);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        background: #0a1f3c;
+    }
+
+    .tech-icon-wrap {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: color-mix(in srgb, var(--tech-color, #4aa9ff) 15%, transparent);
+        border: 1px solid color-mix(in srgb, var(--tech-color, #4aa9ff) 40%, transparent);
+        transition: 0.3s ease;
+    }
+
+    .tech-item:hover .tech-icon-wrap {
+        background: color-mix(in srgb, var(--tech-color, #4aa9ff) 25%, transparent);
+        transform: scale(1.08);
+    }
+
+    .tech-icon-wrap i {
+        font-size: 26px;
+        color: var(--tech-color, #4aa9ff);
+    }
+
+    .tech-item span {
+        color: #c9d4e3;
+        font-size: 12.5px;
+        font-weight: 600;
+        text-align: center;
     }
 
     /* Cards */
@@ -191,13 +236,44 @@
                         Technologies
                     </h5>
 
-                    <span class="skill-badge">PHP</span>
-                    <span class="skill-badge">Laravel</span>
-                    <span class="skill-badge">Python</span>
-                    <span class="skill-badge">Django</span>
-                    <span class="skill-badge">MySQL</span>
-                    <span class="skill-badge">REST API</span>
-                    <span class="skill-badge">Filament</span>
+                    <div class="tech-grid">
+
+                        <div class="tech-item" style="--tech-color:#777bb4;">
+                            <div class="tech-icon-wrap"><i class="devicon-php-plain colored"></i></div>
+                            <span>PHP</span>
+                        </div>
+
+                        <div class="tech-item" style="--tech-color:#ff2d20;">
+                            <div class="tech-icon-wrap"><i class="devicon-laravel-plain colored"></i></div>
+                            <span>Laravel</span>
+                        </div>
+
+                        <div class="tech-item" style="--tech-color:#3776ab;">
+                            <div class="tech-icon-wrap"><i class="devicon-python-plain colored"></i></div>
+                            <span>Python</span>
+                        </div>
+
+                        <div class="tech-item" style="--tech-color:#0c4b33;">
+                            <div class="tech-icon-wrap"><i class="devicon-django-plain colored"></i></div>
+                            <span>Django</span>
+                        </div>
+
+                        <div class="tech-item" style="--tech-color:#4479a1;">
+                            <div class="tech-icon-wrap"><i class="devicon-mysql-plain colored"></i></div>
+                            <span>MySQL</span>
+                        </div>
+
+                        <div class="tech-item" style="--tech-color:#4aa9ff;">
+                            <div class="tech-icon-wrap"><i class="fa-solid fa-diagram-project"></i></div>
+                            <span>REST API</span>
+                        </div>
+
+                        <div class="tech-item" style="--tech-color:#f59e0b;">
+                            <div class="tech-icon-wrap"><i class="fa-solid fa-layer-group"></i></div>
+                            <span>Filament</span>
+                        </div>
+
+                    </div>
 
                 </div>
 
