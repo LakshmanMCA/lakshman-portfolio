@@ -22,6 +22,9 @@ use App\Http\Controllers\Web\AboutController;
 Route::get('/mail', function () {
     return view('web.mail');
 });
+Route::get('/404', function () {
+    return view('web.404');
+});
 // Admin Routes
 Route::prefix('admin')
     ->name('admin.')
@@ -34,3 +37,7 @@ Route::get('/contact',[ContactController::class,'index'])->name('contact.index')
 Route::get('/hire-me',[ContactController::class,'hireMe'])->name('hire-me');
 Route::post('/contact/store',[ContactController::class,'store'])->name('contact.store');
 Route::get('/about',[AboutController::class,'index'])->name('about');
+Route::fallback(function () {
+    return response()
+        ->view('web.404', [], 404);
+});

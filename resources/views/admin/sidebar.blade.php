@@ -510,6 +510,59 @@
         position: relative;
     }
 }
+/* =========================================================
+   LOGOUT BUTTON
+========================================================= */
+
+.sidebar-logout {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 10px 14px;
+
+    border: 1px solid rgba(220, 38, 38, 0.12);
+    border-radius: 10px;
+
+    background: rgba(220, 38, 38, 0.06);
+
+    color: #dc2626;
+
+    font-size: 0.88rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.sidebar-logout i {
+    font-size: 0.95rem;
+}
+
+.sidebar-logout:hover {
+    background: rgba(220, 38, 38, 0.10);
+
+    border-color: rgba(220, 38, 38, 0.20);
+
+    color: #b91c1c;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.10);
+}
+
+.sidebar-logout:active {
+    transform: translateY(0);
+}
 </style>
 
 <!-- Sidebar HTML -->
@@ -527,7 +580,7 @@
         <ul class="nav flex-column">
             <!-- Dashboard -->
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('admin.dashboard')}}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                     <i class="fas fa-tachometer-alt"></i>
                     <span class="nav-text">Dashboard</span>
                     <span class="nav-badge">New</span>
@@ -574,7 +627,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="in#" class="nav-link">
                     <i class="fas fa-file-invoice"></i>
                     <span class="nav-text">Reports</span>
                 </a>
@@ -597,18 +650,39 @@
     </div>
 
     <!-- Sidebar Footer with User Profile -->
-    <div class="sidebar-footer">
-        <div class="user-profile">
-            <div class="user-avatar">
-                AP
-            </div>
-            <div class="user-info">
-                <div class="user-name">Admin User</div>
-                <div class="user-role">Administrator</div>
-            </div>
-            <i class="fas fa-chevron-down" style="color: var(--sidebar-text); font-size: 0.9rem;"></i>
+    <!-- Sidebar Footer -->
+<div class="sidebar-footer">
+
+    <!-- User Profile -->
+    <div class="user-profile">
+
+        <div class="user-avatar">
+            {{ strtoupper(substr(Auth::guard('admin')->user()->name ?? 'Admin', 0, 2)) }}
         </div>
+
+        <div class="user-info">
+            <div class="user-name">
+                {{ Auth::guard('admin')->user()->name ?? 'Admin User' }}
+            </div>
+
+            <div class="user-role">
+                {{ ucfirst(Auth::guard('admin')->user()->role ?? 'Administrator') }}
+            </div>
+        </div>
+
     </div>
+
+    <!-- Logout Button -->
+    <form action="{{ route('admin.logout') }}" method="POST" class="mt-2">
+        @csrf
+
+        <button type="submit" class="sidebar-logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </button>
+    </form>
+
+</div>
 </nav>
 
 <!-- Optional JavaScript for interactivity -->
